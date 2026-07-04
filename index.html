@@ -1,0 +1,546 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Vectis Innovation Labs — We Build the Levers That Move Enterprise Data</title>
+<meta name="description" content="Vectis Innovation Labs: elite data architecture consulting and high-velocity modular digital tools. Give us a place to stand." />
+
+<!-- Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Plus+Jakarta+Sans:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+
+<!-- Tailwind -->
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+tailwind.config = {
+  theme: {
+    extend: {
+      colors: {
+        slate:    { fulcrum: '#1A202C', deep: '#12161F', line: '#2A3242' },
+        teal:     { kinetic: '#00E5FF', dim: 'rgba(0,229,255,0.12)' },
+        gold:     { arch: '#D4AF37', dim: 'rgba(212,175,55,0.12)' },
+        platinum: '#F7FAFC',
+      },
+      fontFamily: {
+        display: ['"Space Grotesk"', 'sans-serif'],
+        label:   ['"Plus Jakarta Sans"', 'sans-serif'],
+        body:    ['Inter', 'sans-serif'],
+      },
+      boxShadow: {
+        'teal-glow': '0 0 24px rgba(0,229,255,0.35), 0 0 64px rgba(0,229,255,0.12)',
+        'teal-soft': '0 0 16px rgba(0,229,255,0.18)',
+        'gold-soft': '0 0 16px rgba(212,175,55,0.18)',
+      },
+    }
+  }
+}
+</script>
+
+<style>
+  body { font-family: 'Inter', sans-serif; background: #1A202C; color: #F7FAFC; }
+  .eyebrow { font-family: 'Plus Jakarta Sans', sans-serif; letter-spacing: 0.22em; text-transform: uppercase; font-size: 0.72rem; font-weight: 600; }
+
+  /* Hero blueprint grid */
+  .grid-bg {
+    background-image:
+      linear-gradient(rgba(0,229,255,0.045) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(0,229,255,0.045) 1px, transparent 1px);
+    background-size: 56px 56px;
+    mask-image: radial-gradient(ellipse 90% 70% at 50% 30%, black 40%, transparent 100%);
+    -webkit-mask-image: radial-gradient(ellipse 90% 70% at 50% 30%, black 40%, transparent 100%);
+  }
+
+  /* Pulsing fulcrum dot */
+  @keyframes pulse-dot {
+    0%, 100% { filter: drop-shadow(0 0 4px #00E5FF); }
+    50%      { filter: drop-shadow(0 0 14px #00E5FF); }
+  }
+  .pulse-dot { animation: pulse-dot 2.8s ease-in-out infinite; }
+
+  /* Lever rotation */
+  #lever-group { transform-origin: 300px 168px; transition: transform 0.5s cubic-bezier(.22,1,.36,1); }
+
+  /* Range sliders */
+  input[type="range"] { -webkit-appearance: none; appearance: none; height: 6px; border-radius: 9999px; outline: none; }
+  input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none; appearance: none;
+    width: 22px; height: 22px; border-radius: 9999px;
+    background: #1A202C; border: 2px solid #00E5FF; cursor: pointer;
+    box-shadow: 0 0 12px rgba(0,229,255,0.5);
+    transition: transform .15s ease;
+  }
+  input[type="range"]::-webkit-slider-thumb:hover { transform: scale(1.15); }
+  input[type="range"]::-moz-range-thumb {
+    width: 22px; height: 22px; border-radius: 9999px;
+    background: #1A202C; border: 2px solid #00E5FF; cursor: pointer;
+    box-shadow: 0 0 12px rgba(0,229,255,0.5);
+  }
+  input[type="range"].gold-thumb::-webkit-slider-thumb { border-color: #D4AF37; box-shadow: 0 0 12px rgba(212,175,55,0.5); }
+  input[type="range"].gold-thumb::-moz-range-thumb    { border-color: #D4AF37; box-shadow: 0 0 12px rgba(212,175,55,0.5); }
+
+  /* Focus visibility */
+  a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visible {
+    outline: 2px solid #00E5FF; outline-offset: 3px; border-radius: 4px;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; scroll-behavior: auto !important; }
+  }
+</style>
+</head>
+
+<body class="bg-slate-fulcrum text-platinum antialiased selection:bg-teal-kinetic selection:text-slate-fulcrum">
+
+<!-- ============ NAVIGATION ============ -->
+<header class="fixed top-0 inset-x-0 z-50 border-b border-white/5 bg-slate-fulcrum/70 backdrop-blur-md">
+  <nav class="mx-auto max-w-7xl px-5 sm:px-8 h-16 flex items-center justify-between" aria-label="Primary">
+    <!-- Logo -->
+    <a href="#top" class="flex items-center gap-3 group" aria-label="Vectis Innovation Labs — home">
+      <svg width="40" height="33" viewBox="0 0 120 100" fill="none" aria-hidden="true">
+        <defs>
+          <linearGradient id="lever-n" x1="0" y1="1" x2="1" y2="0">
+            <stop offset="0" stop-color="#8A94A6"/><stop offset="0.5" stop-color="#E2E8F0"/><stop offset="1" stop-color="#6E7A8A"/>
+          </linearGradient>
+          <radialGradient id="orb-n" cx="0.35" cy="0.3" r="0.9">
+            <stop offset="0" stop-color="#B7FBFF"/><stop offset="0.55" stop-color="#00E5FF"/><stop offset="1" stop-color="#00A9C0"/>
+          </radialGradient>
+        </defs>
+        <!-- Navy V letterform with gold serif caps -->
+        <polygon points="12,20 30,20 46,64 62,20 80,20 55,90 37,90" fill="#232B3A" stroke="#F7FAFC" stroke-opacity="0.4" stroke-width="2"/>
+        <rect x="11" y="12" width="20" height="8" fill="#D4AF37"/>
+        <rect x="61" y="12" width="20" height="8" fill="#D4AF37"/>
+        <!-- Gold fulcrum -->
+        <polygon points="80,90 96,48 112,90" fill="#D4AF37"/>
+        <!-- Steel lever resting on the fulcrum -->
+        <path d="M31 86 L103 34 L107 39 L36 91 Z" fill="url(#lever-n)"/>
+        <!-- Kinetic orb balanced on the tip -->
+        <circle cx="105" cy="29" r="9" fill="url(#orb-n)" class="pulse-dot"/>
+      </svg>
+      <span class="font-display font-bold tracking-tight text-sm sm:text-base leading-tight">Vectis Innovation Labs<span class="text-teal-kinetic">.</span></span>
+    </a>
+
+    <!-- Desktop links -->
+    <div class="hidden md:flex items-center gap-8">
+      <a href="#consulting" class="eyebrow text-platinum/60 hover:text-teal-kinetic transition-colors">Consulting</a>
+      <a href="#products" class="eyebrow text-platinum/60 hover:text-teal-kinetic transition-colors">Digital Products</a>
+      <a href="purepath.html" class="eyebrow text-platinum/60 hover:text-teal-kinetic transition-colors">PurePath</a>
+      <a href="#philosophy" class="eyebrow text-platinum/60 hover:text-teal-kinetic transition-colors">The Philosophy</a>
+      <a href="#contact" class="eyebrow bg-teal-kinetic text-slate-fulcrum px-5 py-2.5 rounded-md hover:shadow-teal-glow hover:scale-[1.03] transition-all">Start a Project</a>
+    </div>
+
+    <!-- Mobile toggle -->
+    <button id="menu-btn" class="md:hidden p-2 text-platinum/80" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-menu">
+      <svg id="icon-open" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+      <svg id="icon-close" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="hidden"><path d="M6 6l12 12M18 6L6 18"/></svg>
+    </button>
+  </nav>
+
+  <!-- Mobile menu -->
+  <div id="mobile-menu" class="md:hidden hidden border-t border-white/5 bg-slate-deep/95 backdrop-blur-md">
+    <div class="px-5 py-4 flex flex-col gap-4">
+      <a href="#consulting" class="eyebrow text-platinum/70 py-2 mobile-link">Consulting</a>
+      <a href="#products" class="eyebrow text-platinum/70 py-2 mobile-link">Digital Products</a>
+      <a href="purepath.html" class="eyebrow text-platinum/70 py-2 mobile-link">PurePath</a>
+      <a href="#philosophy" class="eyebrow text-platinum/70 py-2 mobile-link">The Philosophy</a>
+      <a href="#contact" class="eyebrow bg-teal-kinetic text-slate-fulcrum px-5 py-3 rounded-md text-center mobile-link">Start a Project</a>
+    </div>
+  </div>
+</header>
+
+<!-- ============ HERO ============ -->
+<section id="top" class="relative overflow-hidden pt-36 pb-24 sm:pt-44 sm:pb-32">
+  <div class="absolute inset-0 grid-bg" aria-hidden="true"></div>
+  <div class="absolute -top-32 left-1/2 -translate-x-1/2 w-[720px] h-[420px] rounded-full bg-teal-kinetic/10 blur-[140px]" aria-hidden="true"></div>
+
+  <div class="relative mx-auto max-w-5xl px-5 sm:px-8 text-center">
+    <p class="eyebrow text-teal-kinetic mb-6">Vectis Innovation Labs · Data Leverage Engineering</p>
+
+    <h1 class="font-display font-bold tracking-[-0.03em] leading-[1.02] text-4xl sm:text-6xl lg:text-7xl">
+      We Build the Levers That<br class="hidden sm:block" />
+      Move <span class="text-teal-kinetic drop-shadow-[0_0_18px_rgba(0,229,255,0.45)]">Enterprise Data.</span>
+    </h1>
+
+    <p class="mt-7 mx-auto max-w-2xl text-platinum/65 text-base sm:text-lg leading-relaxed">
+      Archimedes asked only for a place to stand. Your enterprise already has one — it's buried under
+      operational friction. V.I.L. engineers the lever: institutional-grade data architecture for the
+      boardroom, and modular digital tools for builders everywhere.
+    </p>
+
+    <div class="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4">
+      <a href="#products" class="w-full sm:w-auto font-label font-semibold text-sm bg-teal-kinetic text-slate-fulcrum px-8 py-4 rounded-md hover:shadow-teal-glow hover:scale-[1.03] transition-all">
+        Deploy Global Templates
+      </a>
+      <a href="#consulting" class="w-full sm:w-auto font-label font-semibold text-sm border border-gold-arch/60 text-gold-arch px-8 py-4 rounded-md hover:bg-gold-dim hover:shadow-gold-soft hover:scale-[1.03] transition-all">
+        Request Corporate Audit
+      </a>
+    </div>
+
+    <!-- Trust strip -->
+    <div class="mt-16 flex flex-wrap items-center justify-center gap-x-10 gap-y-3 text-platinum/35">
+      <span class="eyebrow">Data Architecture</span>
+      <span class="w-1 h-1 rounded-full bg-teal-kinetic/50" aria-hidden="true"></span>
+      <span class="eyebrow">Power BI Infrastructure</span>
+      <span class="w-1 h-1 rounded-full bg-teal-kinetic/50" aria-hidden="true"></span>
+      <span class="eyebrow">Automated Pipelines</span>
+      <span class="w-1 h-1 rounded-full bg-teal-kinetic/50" aria-hidden="true"></span>
+      <span class="eyebrow">Modular Tooling</span>
+    </div>
+  </div>
+</section>
+
+<!-- ============ DUAL-TRACK MATRIX ============ -->
+<section class="relative py-24 sm:py-28 bg-platinum text-slate-fulcrum">
+  <div class="mx-auto max-w-7xl px-5 sm:px-8">
+    <div class="max-w-2xl mb-14">
+      <p class="eyebrow text-slate-fulcrum/50 mb-4">The Dual-Track Matrix</p>
+      <h2 class="font-display font-bold tracking-tight text-3xl sm:text-5xl leading-tight">One fulcrum. Two arms of force.</h2>
+      <p class="mt-4 text-slate-fulcrum/60 leading-relaxed">Every engagement runs on the same principle: multiply output without multiplying headcount. Choose the arm that matches your position.</p>
+    </div>
+
+    <div class="grid md:grid-cols-2 gap-6 lg:gap-8">
+
+      <!-- Track A: Consulting -->
+      <article id="consulting" class="scroll-mt-24 group rounded-2xl border border-slate-fulcrum/10 bg-white p-8 sm:p-10 hover:border-gold-arch/50 hover:shadow-gold-soft transition-all">
+        <div class="flex items-center justify-between mb-8">
+          <span class="eyebrow text-gold-arch">Track A · Local</span>
+          <svg width="28" height="28" viewBox="0 0 28 28" fill="none" aria-hidden="true">
+            <path d="M4 24 L14 6 L24 24 Z" stroke="#D4AF37" stroke-width="2" fill="none"/>
+            <circle cx="14" cy="6" r="2.5" fill="#D4AF37"/>
+          </svg>
+        </div>
+        <h3 class="font-display font-bold tracking-tight text-2xl sm:text-3xl mb-3">Institutional Consulting</h3>
+        <p class="text-slate-fulcrum/60 leading-relaxed mb-8">
+          Boardroom-grade engagements for enterprises whose data has outgrown its plumbing.
+          We design the architecture, build the pipelines, and hand your executives reporting
+          they can bet the quarter on.
+        </p>
+        <ul class="space-y-4">
+          <li class="flex gap-3 items-start">
+            <span class="mt-1.5 w-2 h-2 rounded-sm bg-gold-arch shrink-0" aria-hidden="true"></span>
+            <div><strong class="font-semibold">Enterprise data architecture</strong> — warehouse and lakehouse design built for audit, scale, and succession.</div>
+          </li>
+          <li class="flex gap-3 items-start">
+            <span class="mt-1.5 w-2 h-2 rounded-sm bg-gold-arch shrink-0" aria-hidden="true"></span>
+            <div><strong class="font-semibold">Custom software pipelines</strong> — bespoke ingestion and transformation layers that retire the spreadsheet shadow-economy.</div>
+          </li>
+          <li class="flex gap-3 items-start">
+            <span class="mt-1.5 w-2 h-2 rounded-sm bg-gold-arch shrink-0" aria-hidden="true"></span>
+            <div><strong class="font-semibold">Automated Power BI infrastructure</strong> — governed, refresh-on-arrival reporting that reaches the boardroom before the meeting does.</div>
+          </li>
+        </ul>
+        <a href="#contact" class="mt-9 inline-block font-label font-semibold text-sm border border-gold-arch text-slate-fulcrum px-6 py-3 rounded-md hover:bg-gold-arch hover:text-white transition-all">Request Corporate Audit →</a>
+      </article>
+
+      <!-- Track B: Digital Products -->
+      <article id="products" class="scroll-mt-24 group rounded-2xl border border-slate-fulcrum/10 bg-slate-fulcrum text-platinum p-8 sm:p-10 hover:border-teal-kinetic/60 hover:shadow-teal-soft transition-all">
+        <div class="flex items-center justify-between mb-8">
+          <span class="eyebrow text-teal-kinetic">Track B · Global</span>
+          <svg width="28" height="28" viewBox="0 0 28 28" fill="none" aria-hidden="true">
+            <rect x="4" y="4" width="8" height="8" stroke="#00E5FF" stroke-width="2"/>
+            <rect x="16" y="4" width="8" height="8" stroke="#00E5FF" stroke-width="2"/>
+            <rect x="4" y="16" width="8" height="8" stroke="#00E5FF" stroke-width="2"/>
+            <rect x="16" y="16" width="8" height="8" fill="#00E5FF"/>
+          </svg>
+        </div>
+        <h3 class="font-display font-bold tracking-tight text-2xl sm:text-3xl mb-3">Modular Digital Tools</h3>
+        <p class="text-platinum/60 leading-relaxed mb-8">
+          High-velocity products for the global builder market. Ship in hours what used to take
+          sprints — templates, frameworks, and workflow automations engineered to slot straight
+          into your stack.
+        </p>
+        <ul class="space-y-4">
+          <li class="flex gap-3 items-start">
+            <span class="mt-1.5 w-2 h-2 rounded-sm bg-teal-kinetic shrink-0" aria-hidden="true"></span>
+            <div><strong class="font-semibold text-platinum">Software templates</strong> — production-ready codebases with the boring decisions already made correctly.</div>
+          </li>
+          <li class="flex gap-3 items-start">
+            <span class="mt-1.5 w-2 h-2 rounded-sm bg-teal-kinetic shrink-0" aria-hidden="true"></span>
+            <div><strong class="font-semibold text-platinum">Notion & code frameworks</strong> — operating systems for teams, from sprint boards to full agency back-offices.</div>
+          </li>
+          <li class="flex gap-3 items-start">
+            <span class="mt-1.5 w-2 h-2 rounded-sm bg-teal-kinetic shrink-0" aria-hidden="true"></span>
+            <div><strong class="font-semibold text-platinum">Automated workflow tools</strong> — plug-in automations that remove the manual step between "done" and "delivered".</div>
+          </li>
+        </ul>
+        <a href="#contact" class="mt-9 inline-block font-label font-semibold text-sm bg-teal-kinetic text-slate-fulcrum px-6 py-3 rounded-md hover:shadow-teal-glow hover:scale-[1.03] transition-all">Browse the Storefront →</a>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- ============ LEVERAGE ROI SIMULATOR ============ -->
+<section id="simulator" class="relative py-24 sm:py-28 bg-slate-deep overflow-hidden">
+  <div class="absolute inset-0 grid-bg opacity-60" aria-hidden="true"></div>
+  <div class="relative mx-auto max-w-6xl px-5 sm:px-8">
+    <div class="text-center max-w-2xl mx-auto mb-14">
+      <p class="eyebrow text-teal-kinetic mb-4">Interactive Model</p>
+      <h2 class="font-display font-bold tracking-tight text-3xl sm:text-5xl leading-tight">The Leverage ROI Simulator</h2>
+      <p class="mt-4 text-platinum/60 leading-relaxed">Reduce operational friction. Increase data automation. Watch the lever tilt in your favor.</p>
+    </div>
+
+    <div class="grid lg:grid-cols-2 gap-10 lg:gap-14 items-center rounded-2xl border border-slate-line bg-slate-fulcrum/80 backdrop-blur-sm p-8 sm:p-12">
+
+      <!-- Controls -->
+      <div class="space-y-10">
+        <div>
+          <div class="flex items-baseline justify-between mb-3">
+            <label for="friction" class="eyebrow text-gold-arch">Operational Friction</label>
+            <span id="friction-val" class="font-display font-bold text-xl text-gold-arch">60%</span>
+          </div>
+          <input type="range" id="friction" class="w-full gold-thumb bg-slate-line" min="0" max="100" value="60"
+                 aria-describedby="friction-hint" />
+          <p id="friction-hint" class="mt-2 text-sm text-platinum/40">Manual handoffs, spreadsheet reconciliation, report-by-request culture.</p>
+        </div>
+
+        <div>
+          <div class="flex items-baseline justify-between mb-3">
+            <label for="automation" class="eyebrow text-teal-kinetic">Data Automation</label>
+            <span id="automation-val" class="font-display font-bold text-xl text-teal-kinetic">30%</span>
+          </div>
+          <input type="range" id="automation" class="w-full bg-slate-line" min="0" max="100" value="30"
+                 aria-describedby="automation-hint" />
+          <p id="automation-hint" class="mt-2 text-sm text-platinum/40">Pipelines, scheduled refresh, self-serve reporting, templated tooling.</p>
+        </div>
+
+        <div class="rounded-xl border border-slate-line bg-slate-deep p-6 flex items-center justify-between">
+          <div>
+            <p class="eyebrow text-platinum/50 mb-1">Corporate Leverage Multiplier</p>
+            <p class="text-sm text-platinum/40" id="verdict">Friction is eating your force.</p>
+          </div>
+          <p id="multiplier" class="font-display font-bold text-4xl sm:text-5xl text-teal-kinetic drop-shadow-[0_0_16px_rgba(0,229,255,0.4)]" aria-live="polite">1.6x</p>
+        </div>
+      </div>
+
+      <!-- Live lever visualization -->
+      <div>
+        <svg viewBox="0 0 600 300" class="w-full" role="img" aria-label="Lever diagram tilting according to the friction and automation values">
+          <!-- Ground line -->
+          <line x1="40" y1="252" x2="560" y2="252" stroke="#2A3242" stroke-width="2"/>
+          <!-- Fulcrum -->
+          <path d="M270 252 L300 168 L330 252 Z" fill="none" stroke="#D4AF37" stroke-width="3"/>
+          <!-- Lever group (rotates) -->
+          <g id="lever-group">
+            <line x1="80" y1="168" x2="520" y2="168" stroke="#F7FAFC" stroke-width="5" stroke-linecap="round"/>
+            <!-- Friction load (left) -->
+            <rect id="load-box" x="92" y="112" width="56" height="56" fill="none" stroke="#D4AF37" stroke-width="3"/>
+            <text x="120" y="146" text-anchor="middle" fill="#D4AF37" font-family="'Plus Jakarta Sans',sans-serif" font-size="13" font-weight="600">LOAD</text>
+            <!-- Kinetic dot (right, the effort point) -->
+            <circle cx="504" cy="156" r="11" fill="#00E5FF" class="pulse-dot"/>
+          </g>
+          <!-- Labels -->
+          <text x="120" y="284" text-anchor="middle" fill="#71809699" font-family="'Plus Jakarta Sans',sans-serif" font-size="11" letter-spacing="2">FRICTION</text>
+          <text x="504" y="284" text-anchor="middle" fill="#71809699" font-family="'Plus Jakarta Sans',sans-serif" font-size="11" letter-spacing="2">AUTOMATION</text>
+        </svg>
+        <p class="mt-4 text-center text-sm text-platinum/35">A longer automation arm moves a heavier enterprise load. Physics, applied to the org chart.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ============ FEATURED PRODUCT: PUREPATH ============ -->
+<section class="relative py-16 border-y border-white/5 bg-slate-fulcrum">
+  <div class="mx-auto max-w-7xl px-5 sm:px-8 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6">
+    <div>
+      <p class="eyebrow text-teal-kinetic mb-2">Featured Build · iOS</p>
+      <h2 class="font-display font-bold tracking-tight text-2xl sm:text-3xl">PurePath — recovery, kept private.</h2>
+      <p class="mt-2 text-platinum/60 max-w-xl leading-relaxed">A privacy-first recovery companion for iOS. Live progress dashboard, an SOS toolkit, and an on-device content shield. No accounts, no tracking — nothing leaves the phone.</p>
+    </div>
+    <a href="purepath.html" class="shrink-0 font-label font-semibold text-sm border border-teal-kinetic/60 text-teal-kinetic px-7 py-3.5 rounded-md hover:bg-teal-dim hover:shadow-teal-soft hover:scale-[1.03] transition-all">Explore PurePath →</a>
+  </div>
+</section>
+
+<!-- ============ THE PHILOSOPHY ============ -->
+<section id="philosophy" class="scroll-mt-24 relative py-24 sm:py-28">
+  <div class="mx-auto max-w-4xl px-5 sm:px-8 text-center">
+    <p class="eyebrow text-gold-arch mb-8">The Philosophy · c. 250 BC</p>
+    <blockquote class="font-display font-bold tracking-tight text-2xl sm:text-4xl leading-snug text-platinum">
+      “Give me a place to stand, and a lever long enough,
+      and I will <span class="text-teal-kinetic">move the earth</span>.”
+    </blockquote>
+    <p class="mt-6 eyebrow text-platinum/40">— Archimedes of Syracuse</p>
+    <p class="mt-10 mx-auto max-w-2xl text-platinum/60 leading-relaxed">
+      Twenty-three centuries later the principle is unchanged: force is cheap, position is everything.
+      Your data is the place to stand. Our architecture, pipelines, and tools are the lever.
+      What moves is your enterprise — measurably, and on schedule.
+    </p>
+  </div>
+</section>
+
+<!-- ============ FOOTER / CONTACT ============ -->
+<footer id="contact" class="scroll-mt-24 border-t border-white/5 bg-slate-deep">
+  <div class="mx-auto max-w-7xl px-5 sm:px-8 py-16 sm:py-20 grid lg:grid-cols-2 gap-14">
+
+    <!-- Brand + legal -->
+    <div>
+      <div class="flex items-center gap-3 mb-6">
+        <svg width="50" height="41" viewBox="0 0 120 100" fill="none" aria-hidden="true">
+          <defs>
+            <linearGradient id="lever-f" x1="0" y1="1" x2="1" y2="0">
+              <stop offset="0" stop-color="#8A94A6"/><stop offset="0.5" stop-color="#E2E8F0"/><stop offset="1" stop-color="#6E7A8A"/>
+            </linearGradient>
+            <radialGradient id="orb-f" cx="0.35" cy="0.3" r="0.9">
+              <stop offset="0" stop-color="#B7FBFF"/><stop offset="0.55" stop-color="#00E5FF"/><stop offset="1" stop-color="#00A9C0"/>
+            </radialGradient>
+          </defs>
+          <polygon points="12,20 30,20 46,64 62,20 80,20 55,90 37,90" fill="#232B3A" stroke="#F7FAFC" stroke-opacity="0.4" stroke-width="2"/>
+          <rect x="11" y="12" width="20" height="8" fill="#D4AF37"/>
+          <rect x="61" y="12" width="20" height="8" fill="#D4AF37"/>
+          <polygon points="80,90 96,48 112,90" fill="#D4AF37"/>
+          <path d="M31 86 L103 34 L107 39 L36 91 Z" fill="url(#lever-f)"/>
+          <circle cx="105" cy="29" r="9" fill="url(#orb-f)" class="pulse-dot"/>
+        </svg>
+        <div>
+          <p class="font-display font-bold tracking-tight text-lg leading-none">Vectis Innovation Labs</p>
+          <p class="eyebrow text-platinum/40 mt-1">V.I.L.™ · Data Leverage Engineering</p>
+        </div>
+      </div>
+      <p class="text-platinum/50 leading-relaxed max-w-md mb-8">
+        Institutional consulting for the boardroom. Modular tools for the builder.
+        One principle, applied at every scale.
+      </p>
+      <nav aria-label="Footer" class="flex flex-wrap gap-x-8 gap-y-3 mb-10">
+        <a href="#consulting" class="eyebrow text-platinum/50 hover:text-teal-kinetic transition-colors">Consulting</a>
+        <a href="#products" class="eyebrow text-platinum/50 hover:text-teal-kinetic transition-colors">Digital Products</a>
+        <a href="purepath.html" class="eyebrow text-platinum/50 hover:text-teal-kinetic transition-colors">PurePath</a>
+        <a href="#philosophy" class="eyebrow text-platinum/50 hover:text-teal-kinetic transition-colors">The Philosophy</a>
+        <a href="#simulator" class="eyebrow text-platinum/50 hover:text-teal-kinetic transition-colors">ROI Simulator</a>
+      </nav>
+      <div class="text-xs text-platinum/30 leading-relaxed space-y-1">
+        <p>© 2026 Vectis Innovation Labs. All rights reserved.</p>
+        <p>“Vectis”, the lever-and-fulcrum device, and “Kinetic Teal” trade dress are trademarks of Vectis Innovation Labs — Intl. Cl. 42 (scientific and technological services; design and development of computer software) and Cl. 35 (business consultancy; data analytics).</p>
+      </div>
+    </div>
+
+    <!-- Contact form -->
+    <div class="rounded-2xl border border-slate-line bg-slate-fulcrum p-8 sm:p-10">
+      <p class="eyebrow text-teal-kinetic mb-2">Secure Contact</p>
+      <h2 class="font-display font-bold tracking-tight text-2xl mb-6">Tell us where you're standing.</h2>
+      <div class="space-y-5">
+        <div class="grid sm:grid-cols-2 gap-5">
+          <div>
+            <label for="f-name" class="eyebrow text-platinum/50 block mb-2">Full name</label>
+            <input id="f-name" type="text" autocomplete="name" class="w-full rounded-md bg-slate-deep border border-slate-line px-4 py-3 text-platinum placeholder:text-platinum/25 focus:border-teal-kinetic transition-colors" placeholder="A. Syracuse" />
+          </div>
+          <div>
+            <label for="f-email" class="eyebrow text-platinum/50 block mb-2">Work email</label>
+            <input id="f-email" type="email" autocomplete="email" class="w-full rounded-md bg-slate-deep border border-slate-line px-4 py-3 text-platinum placeholder:text-platinum/25 focus:border-teal-kinetic transition-colors" placeholder="you@enterprise.com" />
+          </div>
+        </div>
+        <div>
+          <label for="f-track" class="eyebrow text-platinum/50 block mb-2">Engagement track</label>
+          <select id="f-track" class="w-full rounded-md bg-slate-deep border border-slate-line px-4 py-3 text-platinum focus:border-teal-kinetic transition-colors">
+            <option>Institutional Consulting — corporate audit</option>
+            <option>Modular Digital Tools — storefront & licensing</option>
+            <option>Both tracks — strategic partnership</option>
+          </select>
+        </div>
+        <div>
+          <label for="f-msg" class="eyebrow text-platinum/50 block mb-2">Where does the friction live?</label>
+          <textarea id="f-msg" rows="4" class="w-full rounded-md bg-slate-deep border border-slate-line px-4 py-3 text-platinum placeholder:text-platinum/25 focus:border-teal-kinetic transition-colors resize-none" placeholder="Describe your current data stack, reporting cadence, and the bottleneck you want removed."></textarea>
+        </div>
+        <button id="submit-btn" type="button" class="w-full font-label font-semibold text-sm bg-teal-kinetic text-slate-fulcrum px-6 py-4 rounded-md hover:shadow-teal-glow hover:scale-[1.02] transition-all">
+          Send secure brief
+        </button>
+        <p id="form-status" class="hidden text-sm text-teal-kinetic" role="status">Brief received. A V.I.L. partner will respond within one business day.</p>
+        <p class="text-xs text-platinum/30">Transmitted over TLS. Your brief is read by partners only — never by sales automation.</p>
+      </div>
+    </div>
+
+  </div>
+</footer>
+
+<script>
+// ---------- Mobile navigation ----------
+const menuBtn   = document.getElementById('menu-btn');
+const mobileMenu = document.getElementById('mobile-menu');
+const iconOpen  = document.getElementById('icon-open');
+const iconClose = document.getElementById('icon-close');
+
+function toggleMenu(force) {
+  const open = force !== undefined ? force : mobileMenu.classList.contains('hidden');
+  mobileMenu.classList.toggle('hidden', !open);
+  iconOpen.classList.toggle('hidden', open);
+  iconClose.classList.toggle('hidden', !open);
+  menuBtn.setAttribute('aria-expanded', String(open));
+  menuBtn.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+}
+menuBtn.addEventListener('click', () => toggleMenu());
+document.querySelectorAll('.mobile-link').forEach(a => a.addEventListener('click', () => toggleMenu(false)));
+
+// ---------- Leverage ROI Simulator ----------
+const frictionEl   = document.getElementById('friction');
+const automationEl = document.getElementById('automation');
+const frictionVal  = document.getElementById('friction-val');
+const automationVal = document.getElementById('automation-val');
+const multiplierEl = document.getElementById('multiplier');
+const verdictEl    = document.getElementById('verdict');
+const leverGroup   = document.getElementById('lever-group');
+const loadBox      = document.getElementById('load-box');
+
+function computeLeverage(friction, automation) {
+  // Automation lengthens the effort arm; friction weighs down the load arm.
+  const effortArm = 1 + (automation / 100) * 6;        // 1.0 → 7.0
+  const dragCoeff = 1 - (friction / 100) * 0.6;        // 1.0 → 0.4
+  return Math.max(0.4, effortArm * dragCoeff);
+}
+
+function verdictFor(m) {
+  if (m < 1.2)  return 'Friction is eating your force.';
+  if (m < 2.5)  return 'The lever is starting to bite.';
+  if (m < 4.5)  return 'Compounding leverage. Keep pushing.';
+  return 'Archimedes would approve.';
+}
+
+function updateSimulator() {
+  const friction   = Number(frictionEl.value);
+  const automation = Number(automationEl.value);
+
+  frictionVal.textContent   = friction + '%';
+  automationVal.textContent = automation + '%';
+
+  const m = computeLeverage(friction, automation);
+  multiplierEl.textContent = m.toFixed(1) + 'x';
+  verdictEl.textContent = verdictFor(m);
+
+  // Tilt the lever: high leverage tips the load side UP (rotate clockwise, positive deg)
+  // Map multiplier 0.4 → -10deg (load wins) up to 7.0 → +12deg (automation wins)
+  const t = Math.min(1, Math.max(0, (m - 0.4) / (7.0 - 0.4)));
+  const angle = -10 + t * 22;
+  leverGroup.style.transform = 'rotate(' + angle.toFixed(2) + 'deg)';
+
+  // Load box scales subtly with friction weight
+  const s = 0.8 + (friction / 100) * 0.5;
+  loadBox.setAttribute('width',  56 * s);
+  loadBox.setAttribute('height', 56 * s);
+  loadBox.setAttribute('x', 120 - (56 * s) / 2);
+  loadBox.setAttribute('y', 168 - 56 * s);
+}
+
+frictionEl.addEventListener('input', updateSimulator);
+automationEl.addEventListener('input', updateSimulator);
+updateSimulator();
+
+// ---------- Contact form (demo capture) ----------
+document.getElementById('submit-btn').addEventListener('click', () => {
+  const name  = document.getElementById('f-name').value.trim();
+  const email = document.getElementById('f-email').value.trim();
+  const status = document.getElementById('form-status');
+  if (!name || !email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+    status.textContent = 'Add your name and a valid work email so a partner can reply.';
+    status.classList.remove('hidden', 'text-teal-kinetic');
+    status.classList.add('text-gold-arch');
+    return;
+  }
+  status.textContent = 'Brief received. A V.I.L. partner will respond within one business day.';
+  status.classList.remove('hidden', 'text-gold-arch');
+  status.classList.add('text-teal-kinetic');
+  document.getElementById('submit-btn').textContent = 'Brief sent ✓';
+});
+</script>
+
+</body>
+</html>

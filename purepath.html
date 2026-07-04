@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>PurePath — Recovery, Kept Private | Vectis Innovation Labs</title>
+<meta name="description" content="PurePath is a privacy-first recovery companion for iOS. Live progress dashboard, SOS toolkit, on-device content shield. No accounts, no tracking." />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Plus+Jakarta+Sans:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+tailwind.config = {
+  theme: {
+    extend: {
+      colors: {
+        slate:    { fulcrum: '#1A202C', deep: '#12161F', line: '#2A3242' },
+        teal:     { kinetic: '#00E5FF', dim: 'rgba(0,229,255,0.12)' },
+        gold:     { arch: '#D4AF37', dim: 'rgba(212,175,55,0.12)' },
+        platinum: '#F7FAFC',
+      },
+      fontFamily: {
+        display: ['"Space Grotesk"', 'sans-serif'],
+        label:   ['"Plus Jakarta Sans"', 'sans-serif'],
+        body:    ['Inter', 'sans-serif'],
+      },
+      boxShadow: {
+        'teal-glow': '0 0 24px rgba(0,229,255,0.35), 0 0 64px rgba(0,229,255,0.12)',
+        'teal-soft': '0 0 16px rgba(0,229,255,0.18)',
+      },
+    }
+  }
+}
+</script>
+
+<style>
+  body { font-family: 'Inter', sans-serif; background: #1A202C; color: #F7FAFC; }
+  .eyebrow { font-family: 'Plus Jakarta Sans', sans-serif; letter-spacing: 0.22em; text-transform: uppercase; font-size: 0.72rem; font-weight: 600; }
+  .grid-bg {
+    background-image:
+      linear-gradient(rgba(0,229,255,0.045) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(0,229,255,0.045) 1px, transparent 1px);
+    background-size: 56px 56px;
+    mask-image: radial-gradient(ellipse 90% 70% at 50% 30%, black 40%, transparent 100%);
+    -webkit-mask-image: radial-gradient(ellipse 90% 70% at 50% 30%, black 40%, transparent 100%);
+  }
+  @keyframes pulse-dot {
+    0%, 100% { filter: drop-shadow(0 0 4px #00E5FF); }
+    50%      { filter: drop-shadow(0 0 14px #00E5FF); }
+  }
+  .pulse-dot { animation: pulse-dot 2.8s ease-in-out infinite; }
+  @keyframes breathe {
+    0%, 100% { transform: scale(1);    opacity: 0.55; }
+    50%      { transform: scale(1.18); opacity: 0.9; }
+  }
+  .breathe { animation: breathe 6s ease-in-out infinite; transform-origin: center; }
+  a:focus-visible, button:focus-visible { outline: 2px solid #00E5FF; outline-offset: 3px; border-radius: 4px; }
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; scroll-behavior: auto !important; }
+  }
+</style>
+</head>
+
+<body class="bg-slate-fulcrum text-platinum antialiased selection:bg-teal-kinetic selection:text-slate-fulcrum">
+
+<!-- ============ NAVIGATION ============ -->
+<header class="fixed top-0 inset-x-0 z-50 border-b border-white/5 bg-slate-fulcrum/70 backdrop-blur-md">
+  <nav class="mx-auto max-w-7xl px-5 sm:px-8 h-16 flex items-center justify-between" aria-label="Primary">
+    <a href="index.html" class="flex items-center gap-3" aria-label="Vectis Innovation Labs — home">
+      <svg width="40" height="33" viewBox="0 0 120 100" fill="none" aria-hidden="true">
+        <defs>
+          <linearGradient id="lever-n" x1="0" y1="1" x2="1" y2="0">
+            <stop offset="0" stop-color="#8A94A6"/><stop offset="0.5" stop-color="#E2E8F0"/><stop offset="1" stop-color="#6E7A8A"/>
+          </linearGradient>
+          <radialGradient id="orb-n" cx="0.35" cy="0.3" r="0.9">
+            <stop offset="0" stop-color="#B7FBFF"/><stop offset="0.55" stop-color="#00E5FF"/><stop offset="1" stop-color="#00A9C0"/>
+          </radialGradient>
+        </defs>
+        <polygon points="12,20 30,20 46,64 62,20 80,20 55,90 37,90" fill="#232B3A" stroke="#F7FAFC" stroke-opacity="0.4" stroke-width="2"/>
+        <rect x="11" y="12" width="20" height="8" fill="#D4AF37"/>
+        <rect x="61" y="12" width="20" height="8" fill="#D4AF37"/>
+        <polygon points="80,90 96,48 112,90" fill="#D4AF37"/>
+        <path d="M31 86 L103 34 L107 39 L36 91 Z" fill="url(#lever-n)"/>
+        <circle cx="105" cy="29" r="9" fill="url(#orb-n)" class="pulse-dot"/>
+      </svg>
+      <span class="font-display font-bold tracking-tight text-sm sm:text-base leading-tight">Vectis Innovation Labs<span class="text-teal-kinetic">.</span></span>
+    </a>
+
+    <div class="hidden md:flex items-center gap-8">
+      <a href="index.html#consulting" class="eyebrow text-platinum/60 hover:text-teal-kinetic transition-colors">Consulting</a>
+      <a href="index.html#products" class="eyebrow text-platinum/60 hover:text-teal-kinetic transition-colors">Digital Products</a>
+      <a href="#features" class="eyebrow text-teal-kinetic">PurePath</a>
+      <a href="support.html" class="eyebrow text-platinum/60 hover:text-teal-kinetic transition-colors">Support</a>
+    </div>
+
+    <button id="menu-btn" class="md:hidden p-2 text-platinum/80" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-menu">
+      <svg id="icon-open" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+      <svg id="icon-close" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="hidden"><path d="M6 6l12 12M18 6L6 18"/></svg>
+    </button>
+  </nav>
+
+  <div id="mobile-menu" class="md:hidden hidden border-t border-white/5 bg-slate-deep/95 backdrop-blur-md">
+    <div class="px-5 py-4 flex flex-col gap-4">
+      <a href="index.html#consulting" class="eyebrow text-platinum/70 py-2 mobile-link">Consulting</a>
+      <a href="index.html#products" class="eyebrow text-platinum/70 py-2 mobile-link">Digital Products</a>
+      <a href="#features" class="eyebrow text-teal-kinetic py-2 mobile-link">PurePath</a>
+      <a href="support.html" class="eyebrow text-platinum/70 py-2 mobile-link">Support</a>
+    </div>
+  </div>
+</header>
+
+<!-- ============ HERO ============ -->
+<section class="relative overflow-hidden pt-36 pb-20 sm:pt-44 sm:pb-28">
+  <div class="absolute inset-0 grid-bg" aria-hidden="true"></div>
+  <div class="absolute -top-24 left-1/2 -translate-x-1/2 w-[640px] h-[380px] rounded-full bg-teal-kinetic/10 blur-[140px]" aria-hidden="true"></div>
+
+  <div class="relative mx-auto max-w-4xl px-5 sm:px-8 text-center">
+    <p class="eyebrow text-teal-kinetic mb-6">A Vectis Innovation Labs Product · iOS 17+</p>
+
+    <!-- Breathing orb — the app's calm center -->
+    <div class="relative mx-auto mb-10 w-24 h-24" aria-hidden="true">
+      <div class="absolute inset-0 rounded-full bg-teal-kinetic/20 breathe"></div>
+      <div class="absolute inset-3 rounded-full bg-teal-kinetic/25 breathe" style="animation-delay: 0.4s"></div>
+      <div class="absolute inset-7 rounded-full bg-teal-kinetic shadow-teal-glow"></div>
+    </div>
+
+    <h1 class="font-display font-bold tracking-[-0.03em] leading-[1.05] text-4xl sm:text-6xl">
+      PurePath.<br />
+      <span class="text-platinum/80">Recovery, kept private.</span>
+    </h1>
+
+    <p class="mt-7 mx-auto max-w-2xl text-platinum/65 text-base sm:text-lg leading-relaxed">
+      A recovery companion for breaking compulsive digital habits — built so that everything stays
+      on your phone. No account. No cloud. No analytics. Just you, your progress,
+      and the tools to protect it.
+    </p>
+
+    <div class="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4">
+      <span class="w-full sm:w-auto font-label font-semibold text-sm border border-slate-line text-platinum/60 px-8 py-4 rounded-md cursor-default">
+        Coming soon to the App Store
+      </span>
+      <a href="support.html" class="w-full sm:w-auto font-label font-semibold text-sm bg-teal-kinetic text-slate-fulcrum px-8 py-4 rounded-md hover:shadow-teal-glow hover:scale-[1.03] transition-all">
+        Get launch updates
+      </a>
+    </div>
+
+    <div class="mt-14 flex flex-wrap items-center justify-center gap-x-8 gap-y-3 text-platinum/35">
+      <span class="eyebrow">100% On-Device</span>
+      <span class="w-1 h-1 rounded-full bg-teal-kinetic/50" aria-hidden="true"></span>
+      <span class="eyebrow">No Accounts</span>
+      <span class="w-1 h-1 rounded-full bg-teal-kinetic/50" aria-hidden="true"></span>
+      <span class="eyebrow">No Tracking</span>
+      <span class="w-1 h-1 rounded-full bg-teal-kinetic/50" aria-hidden="true"></span>
+      <span class="eyebrow">Delete Anytime</span>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FEATURES ============ -->
+<section id="features" class="scroll-mt-24 relative py-24 bg-platinum text-slate-fulcrum">
+  <div class="mx-auto max-w-7xl px-5 sm:px-8">
+    <div class="max-w-2xl mb-14">
+      <p class="eyebrow text-slate-fulcrum/50 mb-4">What's Inside</p>
+      <h2 class="font-display font-bold tracking-tight text-3xl sm:text-5xl leading-tight">Built for the hard moments,<br class="hidden sm:block" /> not just the good days.</h2>
+    </div>
+
+    <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+
+      <article class="rounded-2xl border border-slate-fulcrum/10 bg-white p-8 hover:border-teal-kinetic/50 hover:shadow-teal-soft transition-all">
+        <svg class="mb-5" width="32" height="32" viewBox="0 0 32 32" fill="none" aria-hidden="true"><circle cx="16" cy="16" r="12" stroke="#00A9C0" stroke-width="2.5"/><path d="M16 9v7l5 3" stroke="#00A9C0" stroke-width="2.5" stroke-linecap="round"/></svg>
+        <h3 class="font-display font-bold tracking-tight text-xl mb-2">Live recovery dashboard</h3>
+        <p class="text-slate-fulcrum/60 leading-relaxed">A real-time counter tracks every second of progress, with milestone markers that turn abstract streaks into visible momentum.</p>
+      </article>
+
+      <article class="rounded-2xl border border-slate-fulcrum/10 bg-white p-8 hover:border-teal-kinetic/50 hover:shadow-teal-soft transition-all">
+        <svg class="mb-5" width="32" height="32" viewBox="0 0 32 32" fill="none" aria-hidden="true"><path d="M16 4l10 5v7c0 6.5-4.3 10.6-10 12-5.7-1.4-10-5.5-10-12V9l10-5z" stroke="#00A9C0" stroke-width="2.5" stroke-linejoin="round"/></svg>
+        <h3 class="font-display font-bold tracking-tight text-xl mb-2">SOS toolkit</h3>
+        <p class="text-slate-fulcrum/60 leading-relaxed">One tap opens guided box breathing, urge surfing, and 5-4-3-2-1 grounding — evidence-informed techniques for riding out the wave.</p>
+      </article>
+
+      <article class="rounded-2xl border border-slate-fulcrum/10 bg-white p-8 hover:border-teal-kinetic/50 hover:shadow-teal-soft transition-all">
+        <svg class="mb-5" width="32" height="32" viewBox="0 0 32 32" fill="none" aria-hidden="true"><rect x="5" y="8" width="22" height="16" rx="2" stroke="#00A9C0" stroke-width="2.5"/><path d="M5 13h22M11 8v-3M21 8v-3" stroke="#00A9C0" stroke-width="2.5" stroke-linecap="round"/><path d="M12 19l3 3 5-6" stroke="#00A9C0" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <h3 class="font-display font-bold tracking-tight text-xl mb-2">Content shield</h3>
+        <p class="text-slate-fulcrum/60 leading-relaxed">Built on Apple's Screen Time framework to block triggering apps and sites at the system level — with an SOS handoff when you try to break through.</p>
+      </article>
+
+      <article class="rounded-2xl border border-slate-fulcrum/10 bg-white p-8 hover:border-teal-kinetic/50 hover:shadow-teal-soft transition-all">
+        <svg class="mb-5" width="32" height="32" viewBox="0 0 32 32" fill="none" aria-hidden="true"><path d="M6 26V6h14l-3 5 3 5H6" stroke="#00A9C0" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <h3 class="font-display font-bold tracking-tight text-xl mb-2">Relapse prevention plan</h3>
+        <p class="text-slate-fulcrum/60 leading-relaxed">A guided wizard turns your personal triggers into concrete if-then rules, so the plan exists before the moment that needs it.</p>
+      </article>
+
+      <article class="rounded-2xl border border-slate-fulcrum/10 bg-white p-8 hover:border-teal-kinetic/50 hover:shadow-teal-soft transition-all">
+        <svg class="mb-5" width="32" height="32" viewBox="0 0 32 32" fill="none" aria-hidden="true"><rect x="8" y="14" width="16" height="12" rx="2" stroke="#00A9C0" stroke-width="2.5"/><path d="M11 14v-4a5 5 0 0110 0v4" stroke="#00A9C0" stroke-width="2.5"/><circle cx="16" cy="20" r="2" fill="#00A9C0"/></svg>
+        <h3 class="font-display font-bold tracking-tight text-xl mb-2">Accountability lock</h3>
+        <p class="text-slate-fulcrum/60 leading-relaxed">Optionally hand the shield's key to someone you trust. Their code is cryptographically hashed on-device — even the app can't read it back.</p>
+      </article>
+
+      <article class="rounded-2xl border border-slate-fulcrum/10 bg-white p-8 hover:border-teal-kinetic/50 hover:shadow-teal-soft transition-all">
+        <svg class="mb-5" width="32" height="32" viewBox="0 0 32 32" fill="none" aria-hidden="true"><path d="M16 7c-3-2.5-7-2.5-10-1v18c3-1.5 7-1.5 10 1 3-2.5 7-2.5 10-1V6c-3-1.5-7-1.5-10 1z" stroke="#00A9C0" stroke-width="2.5" stroke-linejoin="round"/><path d="M16 7v18" stroke="#00A9C0" stroke-width="2.5"/></svg>
+        <h3 class="font-display font-bold tracking-tight text-xl mb-2">Learn library</h3>
+        <p class="text-slate-fulcrum/60 leading-relaxed">Ten focused micro-articles on the science of habit, urges, and recovery — short enough to read in a hard moment, honest enough to matter.</p>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- ============ PRIVACY BY ARCHITECTURE ============ -->
+<section class="relative py-24 bg-slate-deep overflow-hidden">
+  <div class="absolute inset-0 grid-bg opacity-60" aria-hidden="true"></div>
+  <div class="relative mx-auto max-w-5xl px-5 sm:px-8">
+    <div class="text-center max-w-2xl mx-auto mb-14">
+      <p class="eyebrow text-teal-kinetic mb-4">Privacy by Architecture</p>
+      <h2 class="font-display font-bold tracking-tight text-3xl sm:text-5xl leading-tight">Private because it can't be otherwise.</h2>
+      <p class="mt-4 text-platinum/60 leading-relaxed">Recovery is nobody's business but yours. PurePath isn't private because of a policy — it's private because there is no server to send anything to.</p>
+    </div>
+
+    <div class="grid sm:grid-cols-3 gap-6">
+      <div class="rounded-2xl border border-slate-line bg-slate-fulcrum/80 p-8">
+        <p class="font-display font-bold text-2xl text-teal-kinetic mb-2">0 servers</p>
+        <p class="text-platinum/60 leading-relaxed text-sm">Everything — your streak, your plan, your reflections — lives in an encrypted database on your phone. Nothing is uploaded, ever.</p>
+      </div>
+      <div class="rounded-2xl border border-slate-line bg-slate-fulcrum/80 p-8">
+        <p class="font-display font-bold text-2xl text-teal-kinetic mb-2">0 visibility</p>
+        <p class="text-platinum/60 leading-relaxed text-sm">The content shield runs on Apple's Screen Time framework, which is architecturally sealed: not even PurePath can see what you browse or block.</p>
+      </div>
+      <div class="rounded-2xl border border-slate-line bg-slate-fulcrum/80 p-8">
+        <p class="font-display font-bold text-2xl text-teal-kinetic mb-2">1 tap</p>
+        <p class="text-platinum/60 leading-relaxed text-sm">Full data deletion is built into Settings. One confirmation and everything is gone — no export to a support ticket, no 30-day grace period.</p>
+      </div>
+    </div>
+
+    <p class="mt-10 text-center text-sm text-platinum/40">
+      Read the full <a href="privacy.html" class="text-teal-kinetic underline underline-offset-4 hover:no-underline">privacy policy</a> — it's short, because there's not much to disclose.
+    </p>
+  </div>
+</section>
+
+<!-- ============ HONEST NOTE ============ -->
+<section class="relative py-20">
+  <div class="mx-auto max-w-3xl px-5 sm:px-8 text-center">
+    <p class="eyebrow text-gold-arch mb-6">A Note on What This Is</p>
+    <p class="text-platinum/65 leading-relaxed">
+      PurePath is a self-help tool, not therapy and not a crisis service. It works best alongside
+      the support of people — a counselor, a group, a trusted friend. If you're struggling,
+      reaching out to a professional is a sign the lever is working, not that it failed.
+    </p>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer class="border-t border-white/5 bg-slate-deep">
+  <div class="mx-auto max-w-7xl px-5 sm:px-8 py-12 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6">
+    <div>
+      <p class="font-display font-bold tracking-tight">PurePath — by Vectis Innovation Labs</p>
+      <p class="text-xs text-platinum/30 mt-2">© 2026 Vectis Innovation Labs. All rights reserved.</p>
+    </div>
+    <nav aria-label="Footer" class="flex flex-wrap gap-x-8 gap-y-3">
+      <a href="index.html" class="eyebrow text-platinum/50 hover:text-teal-kinetic transition-colors">V.I.L. Home</a>
+      <a href="privacy.html" class="eyebrow text-platinum/50 hover:text-teal-kinetic transition-colors">Privacy Policy</a>
+      <a href="support.html" class="eyebrow text-platinum/50 hover:text-teal-kinetic transition-colors">Support</a>
+    </nav>
+  </div>
+</footer>
+
+<script>
+const menuBtn = document.getElementById('menu-btn');
+const mobileMenu = document.getElementById('mobile-menu');
+const iconOpen = document.getElementById('icon-open');
+const iconClose = document.getElementById('icon-close');
+function toggleMenu(force) {
+  const open = force !== undefined ? force : mobileMenu.classList.contains('hidden');
+  mobileMenu.classList.toggle('hidden', !open);
+  iconOpen.classList.toggle('hidden', open);
+  iconClose.classList.toggle('hidden', !open);
+  menuBtn.setAttribute('aria-expanded', String(open));
+}
+menuBtn.addEventListener('click', () => toggleMenu());
+document.querySelectorAll('.mobile-link').forEach(a => a.addEventListener('click', () => toggleMenu(false)));
+</script>
+
+</body>
+</html>
