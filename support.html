@@ -8,109 +8,111 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@600;700&family=Plus+Jakarta+Sans:wght@600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500&family=Inter:wght@400;500;600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" />
 
 <script src="https://cdn.tailwindcss.com"></script>
 <script>
 tailwind.config = {
   theme: { extend: {
     colors: {
-      slate: { fulcrum: '#1A202C', deep: '#12161F', line: '#2A3242' },
-      teal: { kinetic: '#00E5FF' },
-      gold: { arch: '#D4AF37' },
-      platinum: '#F7FAFC',
+      ink: { DEFAULT: '#0E1219', raised: '#171D28', line: '#28313F' },
+      blue: { signal: '#3E7DFF', bright: '#6FA0FF' },
+      gold: { arch: '#C7A24C', soft: '#E3CD8F' },
+      platinum: { DEFAULT: '#F4F6FA' },
     },
-    fontFamily: {
-      display: ['"Space Grotesk"', 'sans-serif'],
-      label: ['"Plus Jakarta Sans"', 'sans-serif'],
-      body: ['Inter', 'sans-serif'],
-    },
+    fontFamily: { display: ['Fraunces','serif'], body: ['Inter','sans-serif'], mono: ['"Space Mono"','monospace'] },
   }}
 }
 </script>
 <style>
-  body { font-family: 'Inter', sans-serif; background: #1A202C; color: #F7FAFC; }
-  .eyebrow { font-family: 'Plus Jakarta Sans', sans-serif; letter-spacing: 0.22em; text-transform: uppercase; font-size: 0.72rem; font-weight: 600; }
-  details { border: 1px solid #2A3242; border-radius: 0.75rem; background: rgba(18,22,31,0.6); }
-  details + details { margin-top: 0.75rem; }
+  body { font-family: 'Inter', sans-serif; background: #0E1219; color: #F4F6FA; }
+  .eyebrow { font-family: 'Space Mono', monospace; letter-spacing: 0.26em; text-transform: uppercase; font-size: 0.66rem; }
+  .display { font-family: 'Fraunces', serif; font-optical-sizing: auto; }
+  details { border: 1px solid #28313F; background: rgba(23,29,40,0.5); }
+  details + details { margin-top: 0.6rem; }
   summary { cursor: pointer; padding: 1.1rem 1.35rem; font-weight: 600; list-style: none; display: flex; justify-content: space-between; align-items: center; gap: 1rem; }
   summary::-webkit-details-marker { display: none; }
-  summary::after { content: '+'; color: #00E5FF; font-family: 'Space Grotesk', sans-serif; font-size: 1.3rem; line-height: 1; transition: transform .2s ease; }
+  summary::after { content: '+'; color: #3E7DFF; font-family: 'Space Mono', monospace; font-size: 1.2rem; line-height: 1; transition: transform .2s ease; }
   details[open] summary::after { transform: rotate(45deg); }
-  details p { padding: 0 1.35rem 1.2rem; color: rgba(247,250,252,0.6); line-height: 1.7; }
-  summary:focus-visible, a:focus-visible { outline: 2px solid #00E5FF; outline-offset: 3px; border-radius: 4px; }
+  details p { padding: 0 1.35rem 1.2rem; color: rgba(244,246,250,0.6); line-height: 1.7; }
+  summary:focus-visible, a:focus-visible { outline: 2px solid #3E7DFF; outline-offset: 3px; border-radius: 2px; }
   @media (prefers-reduced-motion: reduce) { * { transition-duration: 0.01ms !important; } }
 </style>
 </head>
 
-<body class="bg-slate-fulcrum text-platinum antialiased">
+<body class="bg-ink text-platinum antialiased">
 
-<header class="fixed top-0 inset-x-0 z-50 border-b border-white/5 bg-slate-fulcrum/70 backdrop-blur-md">
-  <nav class="mx-auto max-w-7xl px-5 sm:px-8 h-16 flex items-center justify-between" aria-label="Primary">
-    <a href="index.html" class="font-display font-bold tracking-tight text-xs sm:text-base leading-tight shrink-0" aria-label="Vectis Innovation Labs — home">Vectis Innovation Labs<span class="text-teal-kinetic">.</span></a>
-    <div class="flex items-center gap-3 sm:gap-8 shrink-0">
-      <a href="purepath.html" class="eyebrow text-platinum/60 hover:text-teal-kinetic transition-colors">PurePath</a>
-      <a href="privacy.html" class="eyebrow text-platinum/60 hover:text-teal-kinetic transition-colors">Privacy</a>
+<header class="fixed top-0 inset-x-0 z-50 border-b border-ink-line/60 bg-ink/80 backdrop-blur-md">
+  <nav class="mx-auto max-w-6xl px-6 h-20 flex items-center justify-between" aria-label="Primary">
+    <a href="index.html" class="flex items-center gap-3 shrink-0" aria-label="Vectis Innovation Labs — home">
+      <svg width="30" height="25" viewBox="0 0 120 100" fill="none" aria-hidden="true">
+        <polygon points="12,20 30,20 46,64 62,20 80,20 55,90 37,90" fill="#F4F6FA"/>
+        <rect x="11" y="12" width="20" height="7" fill="#C7A24C"/><rect x="61" y="12" width="20" height="7" fill="#C7A24C"/>
+        <polygon points="80,90 96,50 112,90" fill="#C7A24C"/>
+        <path d="M33 86 L103 36 L107 41 L37 90 Z" fill="#9AA6B6"/>
+        <circle cx="105" cy="31" r="8" fill="#3E7DFF"/>
+      </svg>
+      <span class="display font-medium tracking-tight text-[13px] sm:text-[15px] leading-none">Vectis Innovation Labs</span>
+    </a>
+    <div class="flex items-center gap-4 sm:gap-8 shrink-0">
+      <a href="purepath.html" class="eyebrow text-platinum/50 hover:text-blue-bright transition-colors">PurePath</a>
+      <a href="privacy.html" class="eyebrow text-platinum/50 hover:text-blue-bright transition-colors">Privacy</a>
     </div>
   </nav>
 </header>
 
-<main class="pt-32 pb-24">
-  <div class="mx-auto max-w-3xl px-5 sm:px-8">
-    <p class="eyebrow text-teal-kinetic mb-4">PurePath · Support</p>
-    <h1 class="font-display font-bold tracking-tight text-3xl sm:text-5xl leading-tight">How can we help?</h1>
-    <p class="mt-4 text-platinum/60 leading-relaxed">
-      Email us at <a href="mailto:support@vectisinnovationlabs.com" class="text-teal-kinetic underline underline-offset-4 hover:no-underline">support@vectisinnovationlabs.com</a> —
+<main class="pt-36 pb-24">
+  <div class="mx-auto max-w-3xl px-6">
+    <p class="eyebrow text-blue-bright mb-6">PurePath · Support</p>
+    <h1 class="display font-light tracking-tight text-4xl sm:text-5xl leading-tight">How can we help?</h1>
+    <p class="mt-5 text-platinum/60 leading-relaxed">
+      Email us at <a href="mailto:support@vectisinnovationlabs.com" class="text-blue-bright underline underline-offset-4 hover:no-underline">support@vectisinnovationlabs.com</a> —
       we aim to reply within two business days. For launch updates, the same address works: send a note with the subject "Notify me".
     </p>
 
-    <h2 class="font-display font-bold tracking-tight text-2xl mt-14 mb-6">Frequently asked questions</h2>
+    <div class="flex items-baseline gap-4 mt-16 mb-8">
+      <span class="eyebrow text-gold-arch">FAQ</span>
+      <h2 class="font-semibold tracking-tight text-2xl">Frequently asked questions</h2>
+    </div>
 
     <details>
       <summary>Why does PurePath ask for Screen Time permission?</summary>
       <p>The content shield uses Apple's Screen Time (Family Controls) framework to block apps and websites at the system level. iOS requires you to grant this permission explicitly. It's the same mechanism parents use for family devices — pointed at your own phone, on your own terms. PurePath never sees your browsing activity; Apple's architecture makes that technically impossible.</p>
     </details>
-
     <details>
       <summary>Is my data really private?</summary>
-      <p>Yes — structurally, not just contractually. PurePath has no server, no account system, and no analytics. All data is stored in an encrypted database on your device. See the <a href="privacy.html" class="text-teal-kinetic underline underline-offset-4">privacy policy</a> for the full picture.</p>
+      <p>Yes — structurally, not just contractually. PurePath has no server, no account system, and no analytics. All data is stored in an encrypted database on your device. See the <a href="privacy.html" class="text-blue-bright underline underline-offset-4">privacy policy</a> for the full picture.</p>
     </details>
-
     <details>
       <summary>My accountability partner forgot their code. Can you reset it?</summary>
       <p>No — and that's deliberate. The code is stored only as a one-way hash on your device; neither PurePath nor Vectis can recover or reset it. If the code is lost, the fallback is removing and reinstalling the app, which erases all app data including your progress history. We recommend your partner stores the code somewhere safe when setting it up.</p>
     </details>
-
     <details>
       <summary>Will my streak survive if I get a new phone?</summary>
       <p>Your data is included in your device's standard encrypted iPhone backup (iCloud or computer backup), so restoring a new phone from backup carries PurePath's data with it. There is no separate PurePath sync — by design.</p>
     </details>
-
     <details>
       <summary>How do I delete everything?</summary>
       <p>Open PurePath → Settings → Delete All Data. This permanently erases everything the app stores. Deleting the app itself does the same. There is no copy anywhere else, so deletion is immediate and final.</p>
     </details>
-
     <details>
       <summary>Is PurePath a substitute for therapy?</summary>
       <p>No. PurePath is a self-help tool. It can support recovery, but it isn't treatment, and it isn't a crisis service. If you're finding things heavy, talking to a counselor, doctor, or support group is a genuinely strong move — and the app is designed to work alongside that, not instead of it.</p>
     </details>
-
     <details>
       <summary>When does PurePath launch?</summary>
       <p>PurePath is currently in TestFlight preparation. Email us with the subject "Notify me" and we'll let you know the moment it's live on the App Store.</p>
     </details>
-
   </div>
 </main>
 
-<footer class="border-t border-white/5 bg-slate-deep">
-  <div class="mx-auto max-w-7xl px-5 sm:px-8 py-10 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+<footer class="border-t border-ink-line/60 bg-ink-raised/40">
+  <div class="mx-auto max-w-6xl px-6 py-10 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
     <p class="text-xs text-platinum/30">© 2026 Vectis Innovation Labs. All rights reserved.</p>
     <nav aria-label="Footer" class="flex gap-x-8">
-      <a href="index.html" class="eyebrow text-platinum/50 hover:text-teal-kinetic transition-colors">V.I.L. Home</a>
-      <a href="purepath.html" class="eyebrow text-platinum/50 hover:text-teal-kinetic transition-colors">PurePath</a>
-      <a href="privacy.html" class="eyebrow text-platinum/50 hover:text-teal-kinetic transition-colors">Privacy</a>
+      <a href="index.html" class="eyebrow text-platinum/45 hover:text-blue-bright transition-colors">V.I.L. Home</a>
+      <a href="purepath.html" class="eyebrow text-platinum/45 hover:text-blue-bright transition-colors">PurePath</a>
+      <a href="privacy.html" class="eyebrow text-platinum/45 hover:text-blue-bright transition-colors">Privacy</a>
     </nav>
   </div>
 </footer>
