@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>PurePath Support | Vectis Innovation Labs</title>
+<meta name="description" content="Support and frequently asked questions for PurePath, the privacy-first recovery companion for iOS." />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600&family=Inter:wght@400;500;600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" />
+
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+tailwind.config = { theme: { extend: {
+  colors: {
+    canvas:{DEFAULT:'#FBF9F5',warm:'#F5F0E8',card:'#FFFFFF'},
+    ink:{DEFAULT:'#26303B',soft:'#5A6675',mist:'#8A94A2'},
+    indigo:{DEFAULT:'#4A4F9E',deep:'#3A3F84',soft:'#EDEDF7'},
+    mint:{DEFAULT:'#38A083',deep:'#2C8168',soft:'#E4F2EC'},
+    gold:{arch:'#C7A24C',soft:'#F3ECD9'},
+  },
+  fontFamily:{display:['Fraunces','serif'],body:['Inter','sans-serif'],mono:['"Space Mono"','monospace']},
+  boxShadow:{'soft':'0 4px 24px rgba(38,48,59,0.06)'},
+}}}
+</script>
+<style>
+  body{font-family:'Inter',sans-serif;background:#FBF9F5;color:#26303B}
+  .eyebrow{font-family:'Space Mono',monospace;letter-spacing:.22em;text-transform:uppercase;font-size:.66rem}
+  .display{font-family:'Fraunces',serif;font-optical-sizing:auto}
+  details{border:1px solid rgba(38,48,59,.1);background:#FFFFFF;border-radius:1rem;box-shadow:0 4px 24px rgba(38,48,59,.05)}
+  details+details{margin-top:.7rem}
+  summary{cursor:pointer;padding:1.15rem 1.4rem;font-weight:600;list-style:none;display:flex;justify-content:space-between;align-items:center;gap:1rem}
+  summary::-webkit-details-marker{display:none}
+  summary::after{content:'+';color:#38A083;font-family:'Space Mono',monospace;font-size:1.3rem;line-height:1;transition:transform .2s ease}
+  details[open] summary::after{transform:rotate(45deg)}
+  details p{padding:0 1.4rem 1.25rem;color:#5A6675;line-height:1.7}
+  details a{color:#4A4F9E;text-decoration:none;border-bottom:1px solid rgba(74,79,158,.35)}
+  summary:focus-visible,a:focus-visible{outline:2px solid #4A4F9E;outline-offset:3px;border-radius:3px}
+  @media (prefers-reduced-motion:reduce){*{transition-duration:.01ms!important}}
+</style>
+</head>
+
+<body class="antialiased">
+
+<header class="fixed top-0 inset-x-0 z-50 border-b border-ink/5 bg-canvas/85 backdrop-blur-md">
+  <nav class="mx-auto max-w-6xl px-6 h-20 flex items-center justify-between" aria-label="Primary">
+    <a href="/" class="flex items-center gap-3 shrink-0" aria-label="Vectis Innovation Labs — home">
+      <svg width="30" height="25" viewBox="0 0 120 100" fill="none" aria-hidden="true">
+        <polygon points="12,20 30,20 46,64 62,20 80,20 55,90 37,90" fill="#4A4F9E"/>
+        <rect x="11" y="12" width="20" height="7" fill="#C7A24C"/><rect x="61" y="12" width="20" height="7" fill="#C7A24C"/>
+        <polygon points="80,90 96,50 112,90" fill="#C7A24C"/>
+        <path d="M33 86 L103 36 L107 41 L37 90 Z" fill="#9AA6B6"/>
+        <circle cx="105" cy="31" r="8" fill="#38A083"/>
+      </svg>
+      <span class="display font-medium tracking-tight text-[13px] sm:text-[15px] leading-none">Vectis Innovation Labs</span>
+    </a>
+    <div class="flex items-center gap-4 sm:gap-8 shrink-0">
+      <a href="/purepath" class="eyebrow text-ink-soft hover:text-indigo transition-colors">PurePath</a>
+      <a href="/privacy" class="eyebrow text-ink-soft hover:text-indigo transition-colors">Privacy</a>
+    </div>
+  </nav>
+</header>
+
+<section class="relative overflow-hidden pt-36 pb-10">
+  <div class="absolute -top-24 -left-32 w-[28rem] h-[28rem] rounded-full bg-indigo-soft blur-3xl opacity-60" aria-hidden="true"></div>
+  <div class="relative mx-auto max-w-3xl px-6">
+    <p class="eyebrow text-mint-deep mb-6">PurePath · Support</p>
+    <h1 class="display font-normal tracking-tight text-4xl sm:text-5xl leading-tight">How can we help?</h1>
+    <p class="mt-5 text-ink-soft leading-relaxed max-w-xl">
+      Email <a href="mailto:support@vectisinnovationlabs.com" class="text-indigo underline underline-offset-4 hover:no-underline">support@vectisinnovationlabs.com</a> —
+      a person, not a sales bot, will reply within two business days. For launch updates, send a note with the subject "Notify me".
+    </p>
+  </div>
+</section>
+
+<main class="pb-24">
+  <div class="mx-auto max-w-3xl px-6">
+
+    <!-- crisis -->
+    <div class="rounded-2xl border border-gold-arch/30 bg-gold-soft/50 p-6 sm:p-7 mb-14">
+      <p class="eyebrow text-gold-arch mb-3">If you need someone now</p>
+      <p class="text-ink"><strong>Australia</strong> — Lifeline: 13 11 14 · Beyond Blue: 1300 22 4636</p>
+      <p class="text-ink mt-1"><strong>United States</strong> — Call or text 988 (Suicide &amp; Crisis Lifeline)</p>
+      <p class="text-ink mt-1"><strong>Elsewhere</strong> — findahelpline.com lists verified crisis lines by country.</p>
+      <p class="text-ink-soft text-sm mt-3">PurePath is a self-help tool, not a crisis service. If you're in immediate danger, call your local emergency number.</p>
+    </div>
+
+    <div class="flex items-baseline gap-4 mb-8">
+      <span class="eyebrow text-gold-arch">FAQ</span>
+      <h2 class="display font-normal tracking-tight text-2xl sm:text-3xl">Frequently asked questions</h2>
+    </div>
+
+    <details>
+      <summary>How do I cancel my subscription?</summary>
+      <p>Subscriptions are billed by Apple, so you cancel through your device: Settings → your name → Subscriptions → PurePath → Cancel. We can't cancel for you, but Apple's flow takes two taps. Cancelling before the trial's final 24 hours means you're never charged.</p>
+    </details>
+    <details>
+      <summary>Why does PurePath ask for Screen Time permission?</summary>
+      <p>The content shield uses Apple's Screen Time (Family Controls) framework to block apps and websites at the system level. iOS requires you to grant this permission explicitly. It's the same mechanism behind iOS's own "Limit Adult Websites" — pointed at your own phone, on your own terms. PurePath never sees your browsing activity; Apple's architecture makes that technically impossible.</p>
+    </details>
+    <details>
+      <summary>Is my data really private?</summary>
+      <p>Yes — structurally, not just contractually. PurePath has no server, no account system, and no analytics. All data is stored in an encrypted database on your device. See the <a href="/privacy">privacy policy</a> for the full picture.</p>
+    </details>
+    <details>
+      <summary>My accountability partner forgot their code. Can you reset it?</summary>
+      <p>No — and that's deliberate. The code is stored only as a one-way hash on your device; neither PurePath nor Vectis can recover or reset it. If the code is lost, the fallback is removing and reinstalling the app, which erases all app data including your progress history. We recommend your partner stores the code somewhere safe when setting it up.</p>
+    </details>
+    <details>
+      <summary>Will my streak survive if I get a new phone?</summary>
+      <p>Your data is included in your device's standard encrypted iPhone backup (iCloud or computer backup), so restoring a new phone from backup carries PurePath's data with it. There is no separate PurePath sync — by design.</p>
+    </details>
+    <details>
+      <summary>Does the free trial charge me automatically?</summary>
+      <p>Only if you don't cancel. The app sends a reminder on day 5 — before day 7 — so nothing is a surprise, and the SOS tools stay free whether or not you subscribe.</p>
+    </details>
+    <details>
+      <summary>How do I delete everything?</summary>
+      <p>Open PurePath → Settings → Delete Everything. This permanently erases everything the app stores after one confirmation. Deleting the app itself does the same. There is no copy anywhere else, so deletion is immediate and final.</p>
+    </details>
+    <details>
+      <summary>Is PurePath a substitute for therapy?</summary>
+      <p>No. PurePath is a self-help tool. It can support recovery, but it isn't treatment, and it isn't a crisis service. If you're finding things heavy, talking to a counselor, doctor, or support group is a genuinely strong move — and the app is designed to work alongside that, not instead of it.</p>
+    </details>
+    <details>
+      <summary>Is there an Android version?</summary>
+      <p>Not yet — PurePath is built on iOS-specific frameworks (Apple's Screen Time system) that don't have a direct Android equivalent. If that changes, it'll be announced on the <a href="/purepath">overview page</a>.</p>
+    </details>
+
+  </div>
+</main>
+
+<footer class="border-t border-ink/10 bg-canvas-warm">
+  <div class="mx-auto max-w-6xl px-6 py-10 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+    <p class="text-xs text-ink-mist">© 2026 Vectis Innovation Labs. All rights reserved.</p>
+    <nav aria-label="Footer" class="flex gap-x-8">
+      <a href="/" class="eyebrow text-ink-soft hover:text-indigo transition-colors">V.I.L. Home</a>
+      <a href="/purepath" class="eyebrow text-ink-soft hover:text-indigo transition-colors">PurePath</a>
+      <a href="/privacy" class="eyebrow text-ink-soft hover:text-indigo transition-colors">Privacy</a>
+    </nav>
+  </div>
+</footer>
+
+</body>
+</html>

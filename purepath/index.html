@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>PurePath — Recovery, Kept Private | Vectis Innovation Labs</title>
+<meta name="description" content="PurePath is a privacy-first recovery companion for iOS. Live progress dashboard, SOS toolkit, on-device content shield. No accounts, no tracking." />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400&family=Inter:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" />
+
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+tailwind.config = {
+  theme: { extend: {
+    colors: {
+      /* Warm-light calm system — no pure black, no pure white (per Headspace/Calm research) */
+      canvas:  { DEFAULT: '#FBF9F5', warm: '#F5F0E8', card: '#FFFFFF' },
+      ink:     { DEFAULT: '#26303B', soft: '#5A6675', mist: '#8A94A2' },
+      indigo:  { DEFAULT: '#4A4F9E', deep: '#3A3F84', soft: '#EDEDF7' },
+      mint:    { DEFAULT: '#38A083', deep: '#2C8168', soft: '#E4F2EC' },
+      sky:     { DEFAULT: '#7FA8D8', soft: '#EAF1F9' },
+      gold:    { arch: '#C7A24C', soft: '#F3ECD9' },
+    },
+    fontFamily: { display: ['Fraunces','serif'], body: ['Inter','sans-serif'], mono: ['"Space Mono"','monospace'] },
+    boxShadow: {
+      'soft': '0 4px 24px rgba(38,48,59,0.06)',
+      'card': '0 12px 40px rgba(38,48,59,0.08)',
+      'phone': '0 30px 70px rgba(58,63,132,0.22)',
+    },
+  }}
+}
+</script>
+<style>
+  body { font-family:'Inter',sans-serif; background:#FBF9F5; color:#26303B; }
+  .eyebrow { font-family:'Space Mono',monospace; letter-spacing:0.22em; text-transform:uppercase; font-size:0.66rem; }
+  .display { font-family:'Fraunces',serif; font-optical-sizing:auto; }
+  .hero-grad { background:linear-gradient(135deg,#4A4F9E 0%,#38A083 100%); }
+  .hero-grad-text { background:linear-gradient(120deg,#4A4F9E,#38A083); -webkit-background-clip:text; background-clip:text; color:transparent; }
+  @keyframes breathe { 0%,100%{transform:scale(1);opacity:.45} 50%{transform:scale(1.15);opacity:.75} }
+  .breathe { animation:breathe 6s ease-in-out infinite; transform-origin:center; }
+  @keyframes floaty { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-10px)} }
+  .floaty { animation:floaty 7s ease-in-out infinite; }
+  a:focus-visible,button:focus-visible,summary:focus-visible { outline:2px solid #4A4F9E; outline-offset:3px; border-radius:3px; }
+  @media (prefers-reduced-motion: reduce){ *,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important} }
+</style>
+</head>
+
+<body class="antialiased selection:bg-mint/20 selection:text-ink">
+
+<!-- NAV -->
+<header class="fixed top-0 inset-x-0 z-50 border-b border-ink/5 bg-canvas/85 backdrop-blur-md">
+  <nav class="mx-auto max-w-6xl px-6 h-20 flex items-center justify-between" aria-label="Primary">
+    <a href="/" class="flex items-center gap-3" aria-label="Vectis Innovation Labs — home">
+      <svg width="34" height="28" viewBox="0 0 120 100" fill="none" aria-hidden="true">
+        <defs>
+          <linearGradient id="lv" x1="0" y1="1" x2="1" y2="0"><stop offset="0" stop-color="#8A94A6"/><stop offset=".5" stop-color="#C3CBD6"/><stop offset="1" stop-color="#6E7A8A"/></linearGradient>
+        </defs>
+        <polygon points="12,20 30,20 46,64 62,20 80,20 55,90 37,90" fill="#4A4F9E"/>
+        <rect x="11" y="12" width="20" height="7" fill="#C7A24C"/><rect x="61" y="12" width="20" height="7" fill="#C7A24C"/>
+        <polygon points="80,90 96,50 112,90" fill="#C7A24C"/>
+        <path d="M33 86 L103 36 L107 41 L37 90 Z" fill="url(#lv)"/>
+        <circle cx="105" cy="31" r="8" fill="#38A083"/>
+      </svg>
+      <span class="display font-medium tracking-tight text-[15px] leading-none">Vectis Innovation Labs</span>
+    </a>
+    <div class="hidden md:flex items-center gap-8">
+      <a href="/#consulting" class="eyebrow text-ink-soft hover:text-indigo transition-colors">Consulting</a>
+      <a href="/#products" class="eyebrow text-ink-soft hover:text-indigo transition-colors">Products</a>
+      <a href="#features" class="eyebrow text-indigo">PurePath</a>
+      <a href="/support" class="eyebrow text-ink-soft hover:text-indigo transition-colors">Support</a>
+    </div>
+    <button id="menu-btn" class="md:hidden p-2 text-ink-soft" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-menu">
+      <svg id="icon-open" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+      <svg id="icon-close" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" class="hidden"><path d="M6 6l12 12M18 6L6 18"/></svg>
+    </button>
+  </nav>
+  <div id="mobile-menu" class="md:hidden hidden border-t border-ink/5 bg-canvas/95 backdrop-blur-md">
+    <div class="px-6 py-5 flex flex-col gap-5">
+      <a href="/#consulting" class="eyebrow text-ink-soft mobile-link">Consulting</a>
+      <a href="/#products" class="eyebrow text-ink-soft mobile-link">Products</a>
+      <a href="#features" class="eyebrow text-indigo mobile-link">PurePath</a>
+      <a href="/support" class="eyebrow text-ink-soft mobile-link">Support</a>
+    </div>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="relative overflow-hidden pt-32 sm:pt-40 pb-20">
+  <div class="absolute -top-32 -right-40 w-[36rem] h-[36rem] rounded-full bg-mint-soft blur-3xl opacity-60" aria-hidden="true"></div>
+  <div class="absolute top-40 -left-40 w-[32rem] h-[32rem] rounded-full bg-indigo-soft blur-3xl opacity-60" aria-hidden="true"></div>
+
+  <div class="relative mx-auto max-w-6xl px-6 grid lg:grid-cols-2 gap-16 items-center">
+    <div>
+      <p class="eyebrow text-mint-deep mb-6">A Vectis Innovation Labs Product · iOS 17+</p>
+      <h1 class="display font-normal tracking-[-0.02em] leading-[1.02] text-5xl sm:text-6xl">
+        Recovery,<br /><span class="hero-grad-text italic">kept private.</span>
+      </h1>
+      <p class="mt-7 max-w-xl text-ink-soft text-lg leading-relaxed">
+        A calm companion for breaking compulsive digital habits — built so everything stays
+        on your phone. No account. No cloud. No analytics. Just you, your progress, and the tools to protect it.
+      </p>
+      <div class="mt-9 flex flex-col sm:flex-row gap-4">
+        <span class="inline-flex items-center justify-center eyebrow bg-canvas-card border border-ink/10 text-ink-soft px-7 py-4 rounded-full shadow-soft">Coming soon to the App Store</span>
+        <a href="/support" class="inline-flex items-center justify-center eyebrow hero-grad text-white px-7 py-4 rounded-full shadow-soft hover:shadow-card transition-all">Get launch updates</a>
+      </div>
+      <div class="mt-10 flex flex-wrap items-center gap-x-6 gap-y-3 text-ink-mist">
+        <span class="eyebrow">100% On-Device</span><span class="w-1 h-1 rounded-full bg-mint"></span>
+        <span class="eyebrow">No Accounts</span><span class="w-1 h-1 rounded-full bg-mint"></span>
+        <span class="eyebrow">No Tracking</span><span class="w-1 h-1 rounded-full bg-mint"></span>
+        <span class="eyebrow">Delete Anytime</span>
+      </div>
+    </div>
+
+    <!-- Hero phone -->
+    <div class="relative flex justify-center lg:justify-end">
+      <div class="absolute inset-0 flex items-center justify-center" aria-hidden="true">
+        <div class="w-72 h-72 rounded-full hero-grad opacity-10 breathe"></div>
+      </div>
+      <img src="/screens/01-sos.png" alt="PurePath SOS breathing screen" width="270"
+           class="relative w-[220px] sm:w-[270px] rounded-[2.2rem] shadow-phone floaty" loading="eager" />
+    </div>
+  </div>
+</section>
+
+<!-- FEATURES -->
+<section id="features" class="scroll-mt-24 py-24 bg-canvas-warm">
+  <div class="mx-auto max-w-6xl px-6">
+    <div class="flex items-baseline gap-4 mb-4">
+      <span class="eyebrow text-gold-arch">§ 01</span>
+      <h2 class="display font-normal tracking-tight text-3xl sm:text-4xl">Built for the hard moments, not just the good days.</h2>
+    </div>
+    <p class="text-ink-soft max-w-2xl mb-16 pl-0 sm:pl-12">Six tools that work together — a calm shield, a plan you write in advance, and help that's one tap away when an urge crests.</p>
+
+    <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+      <article class="bg-canvas-card rounded-2xl p-8 shadow-soft">
+        <div class="w-12 h-12 rounded-xl bg-indigo-soft flex items-center justify-center mb-5">
+          <svg width="24" height="24" viewBox="0 0 32 32" fill="none"><circle cx="16" cy="16" r="12" stroke="#4A4F9E" stroke-width="2.5"/><path d="M16 9v7l5 3" stroke="#4A4F9E" stroke-width="2.5" stroke-linecap="round"/></svg>
+        </div>
+        <h3 class="font-semibold text-lg mb-2 tracking-tight">Live recovery dashboard</h3>
+        <p class="text-ink-soft leading-relaxed text-sm">A real-time counter tracks every second of progress, with milestone markers that turn abstract streaks into visible momentum.</p>
+      </article>
+      <article class="bg-canvas-card rounded-2xl p-8 shadow-soft">
+        <div class="w-12 h-12 rounded-xl bg-mint-soft flex items-center justify-center mb-5">
+          <svg width="24" height="24" viewBox="0 0 32 32" fill="none"><path d="M16 4l10 5v7c0 6.5-4.3 10.6-10 12-5.7-1.4-10-5.5-10-12V9l10-5z" stroke="#38A083" stroke-width="2.5" stroke-linejoin="round"/></svg>
+        </div>
+        <h3 class="font-semibold text-lg mb-2 tracking-tight">SOS toolkit</h3>
+        <p class="text-ink-soft leading-relaxed text-sm">One tap opens guided box breathing, urge surfing, and 5-4-3-2-1 grounding — evidence-informed techniques for riding out the wave. Free forever.</p>
+      </article>
+      <article class="bg-canvas-card rounded-2xl p-8 shadow-soft">
+        <div class="w-12 h-12 rounded-xl bg-indigo-soft flex items-center justify-center mb-5">
+          <svg width="24" height="24" viewBox="0 0 32 32" fill="none"><rect x="5" y="8" width="22" height="16" rx="2" stroke="#4A4F9E" stroke-width="2.5"/><path d="M5 13h22M11 8v-3M21 8v-3" stroke="#4A4F9E" stroke-width="2.5" stroke-linecap="round"/><path d="M12 19l3 3 5-6" stroke="#4A4F9E" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        <h3 class="font-semibold text-lg mb-2 tracking-tight">Content shield</h3>
+        <p class="text-ink-soft leading-relaxed text-sm">Built on Apple's Screen Time framework to block triggering apps and sites at the system level — with an SOS handoff when you try to break through.</p>
+      </article>
+      <article class="bg-canvas-card rounded-2xl p-8 shadow-soft">
+        <div class="w-12 h-12 rounded-xl bg-mint-soft flex items-center justify-center mb-5">
+          <svg width="24" height="24" viewBox="0 0 32 32" fill="none"><path d="M6 26V6h14l-3 5 3 5H6" stroke="#38A083" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        <h3 class="font-semibold text-lg mb-2 tracking-tight">Relapse prevention plan</h3>
+        <p class="text-ink-soft leading-relaxed text-sm">A guided wizard turns your personal triggers into concrete if-then rules, so the plan exists before the moment that needs it.</p>
+      </article>
+      <article class="bg-canvas-card rounded-2xl p-8 shadow-soft">
+        <div class="w-12 h-12 rounded-xl bg-indigo-soft flex items-center justify-center mb-5">
+          <svg width="24" height="24" viewBox="0 0 32 32" fill="none"><rect x="8" y="14" width="16" height="12" rx="2" stroke="#4A4F9E" stroke-width="2.5"/><path d="M11 14v-4a5 5 0 0110 0v4" stroke="#4A4F9E" stroke-width="2.5"/><circle cx="16" cy="20" r="2" fill="#4A4F9E"/></svg>
+        </div>
+        <h3 class="font-semibold text-lg mb-2 tracking-tight">Accountability lock</h3>
+        <p class="text-ink-soft leading-relaxed text-sm">Optionally hand the shield's key to someone you trust. Their code is cryptographically hashed on-device — even the app can't read it back.</p>
+      </article>
+      <article class="bg-canvas-card rounded-2xl p-8 shadow-soft">
+        <div class="w-12 h-12 rounded-xl bg-mint-soft flex items-center justify-center mb-5">
+          <svg width="24" height="24" viewBox="0 0 32 32" fill="none"><path d="M16 7c-3-2.5-7-2.5-10-1v18c3-1.5 7-1.5 10 1 3-2.5 7-2.5 10-1V6c-3-1.5-7-1.5-10 1z" stroke="#38A083" stroke-width="2.5" stroke-linejoin="round"/><path d="M16 7v18" stroke="#38A083" stroke-width="2.5"/></svg>
+        </div>
+        <h3 class="font-semibold text-lg mb-2 tracking-tight">Learn library</h3>
+        <p class="text-ink-soft leading-relaxed text-sm">Ten focused micro-articles on the science of habit, urges, and recovery — short enough to read in a hard moment, honest enough to matter.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- SCREENSHOT SHOWCASE -->
+<section class="py-24">
+  <div class="mx-auto max-w-6xl px-6">
+    <div class="flex items-baseline gap-4 mb-4">
+      <span class="eyebrow text-gold-arch">§ 02</span>
+      <h2 class="display font-normal tracking-tight text-3xl sm:text-4xl">See it in your hand.</h2>
+    </div>
+    <p class="text-ink-soft max-w-2xl mb-14 pl-0 sm:pl-12">Calm by design — every screen is built to lower the temperature of a hard moment, not raise it.</p>
+
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-6 sm:gap-8">
+      <figure class="text-center">
+        <img src="/screens/02-shield.png" alt="PurePath content shield screen" width="500" class="w-full rounded-[1.6rem] shadow-card" loading="lazy" />
+        <figcaption class="mt-4 eyebrow text-ink-mist">The shield</figcaption>
+      </figure>
+      <figure class="text-center mt-0 md:mt-10">
+        <img src="/screens/04-dashboard.png" alt="PurePath recovery dashboard" width="500" class="w-full rounded-[1.6rem] shadow-card" loading="lazy" />
+        <figcaption class="mt-4 eyebrow text-ink-mist">Dashboard</figcaption>
+      </figure>
+      <figure class="text-center">
+        <img src="/screens/05-plan.png" alt="PurePath relapse prevention plan" width="500" class="w-full rounded-[1.6rem] shadow-card" loading="lazy" />
+        <figcaption class="mt-4 eyebrow text-ink-mist">Your plan</figcaption>
+      </figure>
+      <figure class="text-center mt-0 md:mt-10">
+        <img src="/screens/06-checkin.png" alt="PurePath daily check-in" width="500" class="w-full rounded-[1.6rem] shadow-card" loading="lazy" />
+        <figcaption class="mt-4 eyebrow text-ink-mist">Daily check-in</figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<!-- PRIVACY -->
+<section class="py-24 hero-grad relative overflow-hidden">
+  <div class="absolute inset-0 opacity-10" aria-hidden="true">
+    <div class="absolute top-10 left-10 w-72 h-72 rounded-full bg-white blur-3xl"></div>
+  </div>
+  <div class="relative mx-auto max-w-5xl px-6 text-white">
+    <div class="flex items-baseline gap-4 mb-4">
+      <span class="eyebrow text-white/70">§ 03</span>
+      <h2 class="display font-normal tracking-tight text-3xl sm:text-4xl">Private because it can't be otherwise.</h2>
+    </div>
+    <p class="text-white/75 leading-relaxed max-w-xl mb-14 pl-0 sm:pl-12">Recovery is nobody's business but yours. PurePath isn't private because of a policy — it's private because there is no server to send anything to.</p>
+
+    <div class="grid sm:grid-cols-3 gap-5">
+      <div class="bg-white/10 backdrop-blur rounded-2xl p-8 border border-white/15">
+        <p class="display text-5xl mb-3">0</p>
+        <p class="eyebrow text-white/70 mb-3">Servers</p>
+        <p class="text-white/75 leading-relaxed text-sm">Everything — your streak, your plan, your reflections — lives in an encrypted database on your phone. Nothing is uploaded, ever.</p>
+      </div>
+      <div class="bg-white/10 backdrop-blur rounded-2xl p-8 border border-white/15">
+        <p class="display text-5xl mb-3">0</p>
+        <p class="eyebrow text-white/70 mb-3">Visibility</p>
+        <p class="text-white/75 leading-relaxed text-sm">The content shield runs on Apple's Screen Time framework, which is architecturally sealed: not even PurePath can see what you browse or block.</p>
+      </div>
+      <div class="bg-white/10 backdrop-blur rounded-2xl p-8 border border-white/15">
+        <p class="display text-5xl mb-3">1</p>
+        <p class="eyebrow text-white/70 mb-3">Tap to erase</p>
+        <p class="text-white/75 leading-relaxed text-sm">Full data deletion is built into Settings. One confirmation and everything is gone — no export to a support ticket, no grace period.</p>
+      </div>
+    </div>
+    <p class="mt-10 text-sm text-white/70 pl-0 sm:pl-12">Read the full <a href="/privacy" class="text-white underline underline-offset-4 hover:no-underline">privacy policy</a> — it's short, because there's not much to disclose.</p>
+  </div>
+</section>
+
+<!-- NOTE -->
+<section class="py-20 bg-canvas-warm">
+  <div class="mx-auto max-w-3xl px-6 text-center">
+    <span class="eyebrow text-gold-arch">A Note on What This Is</span>
+    <p class="mt-6 display font-normal text-ink text-2xl sm:text-[26px] leading-snug">
+      PurePath is a self-help tool, not therapy and not a crisis service. It works best alongside
+      the support of people — a counselor, a group, a trusted friend. If you're struggling,
+      reaching out to a professional is a sign the lever is working, not that it failed.
+    </p>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="border-t border-ink/10 bg-canvas">
+  <div class="mx-auto max-w-6xl px-6 py-14 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6">
+    <div>
+      <p class="display font-medium tracking-tight text-lg">PurePath — by Vectis Innovation Labs</p>
+      <p class="text-xs text-ink-mist mt-2">© 2026 Vectis Innovation Labs. All rights reserved.</p>
+    </div>
+    <nav aria-label="Footer" class="flex flex-wrap gap-x-8 gap-y-3">
+      <a href="/" class="eyebrow text-ink-soft hover:text-indigo transition-colors">V.I.L. Home</a>
+      <a href="/privacy" class="eyebrow text-ink-soft hover:text-indigo transition-colors">Privacy</a>
+      <a href="/support" class="eyebrow text-ink-soft hover:text-indigo transition-colors">Support</a>
+    </nav>
+  </div>
+</footer>
+
+<script>
+const menuBtn=document.getElementById('menu-btn'),mobileMenu=document.getElementById('mobile-menu'),iconOpen=document.getElementById('icon-open'),iconClose=document.getElementById('icon-close');
+function toggleMenu(force){const open=force!==undefined?force:mobileMenu.classList.contains('hidden');mobileMenu.classList.toggle('hidden',!open);iconOpen.classList.toggle('hidden',open);iconClose.classList.toggle('hidden',!open);menuBtn.setAttribute('aria-expanded',String(open));}
+menuBtn.addEventListener('click',()=>toggleMenu());
+document.querySelectorAll('.mobile-link').forEach(a=>a.addEventListener('click',()=>toggleMenu(false)));
+</script>
+</body>
+</html>
