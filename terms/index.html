@@ -4,37 +4,33 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>PurePath Terms of Service | Vectis Innovation Labs</title>
-<meta name="description" content="Terms of service for PurePath, the privacy-first recovery companion for iOS by Vectis Innovation Labs." />
+<meta name="description" content="Terms of service for the PurePath Android and iOS apps, including subscriptions, free trials, lifetime purchases, and Content Shield use." />
+<link rel="canonical" href="https://www.vectisinnovationlabs.com/terms/" />
 
 <link rel="preconnect" href="https://fonts.googleapis.com" />
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600&family=Inter:wght@400;500;600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous" />
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600&amp;family=Inter:wght@400;500;600&amp;family=Space+Mono:wght@400;700&amp;display=swap" rel="stylesheet" />
+<link rel="icon" href="../favicon.svg" type="image/svg+xml" />
 
-<script src="https://cdn.tailwindcss.com"></script>
-<script>
-tailwind.config = { theme: { extend: {
-  colors: {
-    canvas:{DEFAULT:'#FBF9F5',warm:'#F5F0E8',card:'#FFFFFF'},
-    ink:{DEFAULT:'#26303B',soft:'#5A6675',mist:'#8A94A2'},
-    indigo:{DEFAULT:'#4A4F9E',deep:'#3A3F84',soft:'#EDEDF7'},
-    mint:{DEFAULT:'#38A083',deep:'#2C8168',soft:'#E4F2EC'},
-    gold:{arch:'#C7A24C',soft:'#F3ECD9'},
-  },
-  fontFamily:{display:['Fraunces','serif'],body:['Inter','sans-serif'],mono:['"Space Mono"','monospace']},
-  boxShadow:{'soft':'0 4px 24px rgba(38,48,59,0.06)'},
-}}}
-</script>
+<link rel="stylesheet" href="../styles.css" />
 <style>
   body{font-family:'Inter',sans-serif;background:#FBF9F5;color:#26303B}
   .eyebrow{font-family:'Space Mono',monospace;letter-spacing:.22em;text-transform:uppercase;font-size:.66rem}
   .display{font-family:'Fraunces',serif;font-optical-sizing:auto}
+  .ambient-panel{background:linear-gradient(135deg,rgba(237,237,247,.72),rgba(251,249,245,.92))}
+  .legal-nav{display:flex;flex-wrap:wrap;justify-content:flex-end;gap:.75rem 1.6rem}
+  @media (max-width:480px){.brand-wordmark{display:none}.legal-nav{gap:.5rem 1rem}.legal-nav .eyebrow{font-size:.6rem;letter-spacing:.16em}}
   .policy h2{font-family:'Fraunces',serif;font-weight:500;letter-spacing:-.01em;font-size:1.5rem;margin-top:2.75rem;margin-bottom:.7rem;color:#26303B}
+  .policy h3{font-size:1rem;font-weight:600;margin-top:1.5rem;margin-bottom:.45rem;color:#26303B}
   .policy p,.policy li{color:#5A6675;line-height:1.75}
   .policy ul{margin-top:.6rem;padding-left:0;list-style:none}
   .policy li{margin-bottom:.6rem;padding-left:1.6rem;position:relative}
   .policy li::before{content:"—";position:absolute;left:0;color:#C7A24C;font-family:'Space Mono',monospace}
   .policy strong{color:#26303B;font-weight:600}
   .policy a{color:#4A4F9E;text-decoration:none;border-bottom:1px solid rgba(74,79,158,.35)}
+  .policy a:hover{border-bottom-color:#4A4F9E}
+  .terms-callout{margin-top:2rem;padding:1.25rem 1.4rem;border:1px solid rgba(199,162,76,.28);border-radius:1rem;background:rgba(248,240,218,.45)}
+  .terms-callout p{margin:0}
   a:focus-visible{outline:2px solid #4A4F9E;outline-offset:3px;border-radius:3px}
 </style>
 </head>
@@ -43,7 +39,7 @@ tailwind.config = { theme: { extend: {
 
 <header class="fixed top-0 inset-x-0 z-50 border-b border-ink/5 bg-canvas/85 backdrop-blur-md">
   <nav class="mx-auto max-w-6xl px-6 h-20 flex items-center justify-between" aria-label="Primary">
-    <a href="/" class="flex items-center gap-3 shrink-0" aria-label="Vectis Innovation Labs — home">
+    <a href="../" class="flex items-center gap-3 shrink-0" aria-label="Vectis Innovation Labs — home">
       <svg width="30" height="25" viewBox="0 0 120 100" fill="none" aria-hidden="true">
         <polygon points="12,20 30,20 46,64 62,20 80,20 55,90 37,90" fill="#4A4F9E"/>
         <rect x="11" y="12" width="20" height="7" fill="#C7A24C"/><rect x="61" y="12" width="20" height="7" fill="#C7A24C"/>
@@ -51,55 +47,103 @@ tailwind.config = { theme: { extend: {
         <path d="M33 86 L103 36 L107 41 L37 90 Z" fill="#9AA6B6"/>
         <circle cx="105" cy="31" r="8" fill="#38A083"/>
       </svg>
-      <span class="display font-medium tracking-tight text-[13px] sm:text-[15px] leading-none">Vectis Innovation Labs</span>
+      <span class="brand-wordmark display font-medium tracking-tight text-[13px] sm:text-[15px] leading-none">Vectis Innovation Labs</span>
     </a>
-    <div class="flex items-center gap-4 sm:gap-8 shrink-0">
-      <a href="/purepath" class="eyebrow text-ink-soft hover:text-indigo transition-colors">PurePath</a>
-      <a href="/privacy" class="eyebrow text-ink-soft hover:text-indigo transition-colors">Privacy</a>
-      <a href="/support" class="eyebrow text-ink-soft hover:text-indigo transition-colors">Support</a>
+    <div class="legal-nav shrink-0">
+      <a href="../purepath/" class="eyebrow text-ink-soft hover:text-indigo transition-colors">PurePath</a>
+      <a href="../privacy/" class="eyebrow text-ink-soft hover:text-indigo transition-colors">Privacy</a>
+      <a href="../support/" class="eyebrow text-ink-soft hover:text-indigo transition-colors">Support</a>
     </div>
   </nav>
 </header>
 
 <section class="relative overflow-hidden pt-36 pb-10">
-  <div class="absolute -top-24 -right-32 w-[28rem] h-[28rem] rounded-full bg-indigo-soft blur-3xl opacity-60" aria-hidden="true"></div>
+  <div class="absolute inset-x-0 top-0 h-full ambient-panel opacity-70" aria-hidden="true"></div>
   <div class="relative mx-auto max-w-3xl px-6">
     <p class="eyebrow text-mint-deep mb-6">PurePath · Legal</p>
     <h1 class="display font-normal tracking-tight text-4xl sm:text-5xl leading-tight">Terms of Service</h1>
-    <p class="mt-4 text-ink-mist text-sm font-mono">Effective 14 July 2026 · Applies to the PurePath iOS application.</p>
+    <p class="mt-4 text-ink-mist text-sm font-mono">Effective 28 July 2026 · Applies to the PurePath Android and iOS applications.</p>
   </div>
 </section>
 
 <main class="pb-24">
   <div class="mx-auto max-w-3xl px-6">
     <div class="policy">
-      <h2>1. Agreement</h2>
-      <p>PurePath ("the app") is published by Vectis Innovation Labs ("we", "us"). By downloading or using the app, you agree to these Terms of Service and to our <a href="/privacy">Privacy Policy</a>. If you don't agree, please don't use the app. You must be 17 or older to use PurePath.</p>
+      <h2>1. Agreement and eligibility</h2>
+      <p>PurePath ("the app") is published by Vectis Innovation Labs ("Vectis", "we", "us", or "our"). By downloading, purchasing, or using PurePath, you agree to these Terms of Service and our <a href="../privacy/">Privacy Policy</a>. If you do not agree, do not use the app. You must be at least 17 years old and legally able to enter into this agreement.</p>
 
-      <h2>2. What PurePath is — and isn't</h2>
-      <p>PurePath offers educational content and behavioral tools to help you reduce compulsive digital habits. It is <strong>not</strong> a medical device, and it does not diagnose, treat, or cure any condition. It is not therapy, and it is not a crisis service. The content shield helps you enforce limits you set for yourself; it is a commitment aid, not an unbreakable barrier, and you remain responsible for your own choices and wellbeing. Crisis resources listed in the app are operated by independent third parties, and we are not responsible for their availability or conduct.</p>
+      <h2>2. What PurePath is — and is not</h2>
+      <p>PurePath provides educational material, reflection tools, reminders, recovery planning, and optional blocking features intended to help adults reduce compulsive digital habits. It is a self-help product, not a medical device, healthcare service, diagnosis, treatment, therapy, or crisis service. Do not delay or replace professional care because of information in the app.</p>
+      <p>If you are in immediate danger or need urgent help, contact your local emergency service or a verified crisis service. Resources displayed or opened by PurePath are operated by independent third parties. We do not control their availability, advice, or conduct.</p>
 
-      <h2>3. Subscriptions &amp; billing</h2>
-      <p>PurePath's core tools are offered through PurePath Pro, available as a monthly or yearly auto-renewing subscription, or a one-time lifetime purchase. New subscribers start with a 7-day free trial. The app sends a reminder before the trial ends, so you're never charged by surprise.</p>
+      <h2>3. Content Shield and permissions</h2>
+      <p>The Content Shield is a commitment aid that applies rules you choose. It is not guaranteed to be immediate, uninterrupted, or impossible to bypass. Operating-system changes, device settings, battery management, browser design, in-app browsers, sign-in hand-offs, app updates, and permission changes may affect blocking.</p>
+
+      <h3>Android</h3>
+      <p>Android blocking requires you to enable PurePath's Accessibility service. The service identifies the foreground app and, in supported browsers, reads the current address bar so it can compare that app or domain with your chosen block rules. The service may stop protecting if you disable its permission or Android stops it. The complete data-use disclosure is in our <a href="../privacy/">Privacy Policy</a>.</p>
+
+      <h3>iOS</h3>
+      <p>iOS blocking depends on Apple's Family Controls and Screen Time frameworks and the permissions you grant. Apple and iOS determine how those controls are applied and made available.</p>
+
+      <div class="terms-callout">
+        <p><strong>You remain responsible for your device settings, choices, and wellbeing.</strong> Do not rely on PurePath as the sole safeguard against content, apps, relapse, self-harm, or any emergency.</p>
+      </div>
+
+      <h2>4. Free and paid access</h2>
+      <p>Some safety features, including the SOS toolkit and crisis-resource links, are available without a subscription or lifetime purchase. Other features may require PurePath Pro. The current app and store listing show which features are included before you purchase.</p>
+
+      <h2>5. Subscriptions, trials, and lifetime purchase</h2>
+      <p>PurePath Pro may be offered as a monthly or yearly auto-renewing subscription and as a one-time lifetime purchase. <strong>On Android, the yearly subscription includes a seven-day free trial for eligible new customers.</strong> Available products, prices, currencies, taxes, and other offer terms can vary by platform, country, store account, and time. Google Play determines trial eligibility and shows the localized price that will be charged after the trial. The terms and price shown by Google Play or the App Store at confirmation are the terms that apply to that transaction.</p>
+
+      <h3>Subscriptions and free trials</h3>
       <ul>
-        <li>Payment is charged to your Apple ID at confirmation of purchase, after any free trial ends.</li>
-        <li>Auto-renewing subscriptions renew automatically unless cancelled at least 24 hours before the end of the current period.</li>
-        <li>You manage or cancel anytime in Settings → Apple ID → Subscriptions. We can't cancel on your behalf — Apple controls billing.</li>
-        <li>Prices are set in your local App Store. Refunds are handled by Apple under their standard policy.</li>
+        <li>Subscriptions renew automatically at the billing interval and price shown by the store unless you cancel before the applicable renewal deadline.</li>
+        <li>For eligible new Android customers, the yearly plan's seven-day free trial converts to the displayed yearly subscription unless cancelled before the trial ends.</li>
+        <li>Any other free or discounted trial applies only when the store says your account is eligible. Unless you cancel before it ends, the trial converts to the paid subscription shown at confirmation.</li>
+        <li>A reminder from PurePath is a convenience only. Delivery is not guaranteed and does not replace managing the subscription through your store account.</li>
+        <li>Deleting PurePath does not cancel a subscription.</li>
       </ul>
-      <p><strong>The SOS toolkit and crisis resources are free, permanently, with no trial or purchase required.</strong></p>
 
-      <h2>4. Your responsibilities</h2>
-      <p>You agree to use PurePath only for its intended personal purpose and not to reverse-engineer, resell, or interfere with the app. Because your data lives only on your device, keeping your device secure — a passcode, and the app's optional Face ID lock — is your responsibility.</p>
+      <h3>Lifetime purchase</h3>
+      <p>The lifetime option is a one-time, non-renewing purchase that unlocks the included PurePath Pro features for the purchasing store account on that platform, subject to store restoration rules, continued app availability, device compatibility, and these terms. It does not transfer automatically between Google Play and the App Store and does not include a separate future product or service unless we expressly say it does.</p>
 
-      <h2>5. Intellectual property</h2>
-      <p>PurePath, its design, its written content, and the "Vectis" lever-and-fulcrum marks are the property of Vectis Innovation Labs. Everything you create inside the app belongs to you — and since it never leaves your device, it stays entirely yours.</p>
+      <h3>Billing and entitlement</h3>
+      <p>Google processes Android purchases and Apple processes iOS purchases. The applicable store charges your selected payment method and supplies PurePath with purchase-status information needed to grant access. Access may be withheld or removed if a purchase is pending, cancelled before completion, refunded, revoked, subject to a chargeback, or otherwise reported invalid by the store.</p>
 
-      <h2>6. Disclaimers &amp; liability</h2>
-      <p>PurePath is provided "as is", without warranties of any kind. To the fullest extent permitted by law, Vectis Innovation Labs is not liable for any indirect or consequential damages arising from use of the app. Nothing in these terms limits any rights you have under the consumer law of your country that cannot lawfully be excluded — including, in Australia, guarantees under the Australian Consumer Law.</p>
+      <h2>6. Managing or cancelling a subscription</h2>
+      <p><strong>Android:</strong> Manage or cancel through Google Play → profile picture → Payments &amp; subscriptions → Subscriptions → PurePath, or use <a href="https://play.google.com/store/account/subscriptions">Google Play's subscription page</a>.</p>
+      <p><strong>iOS:</strong> Manage or cancel through Settings → your name → Subscriptions → PurePath, or through Apple's subscription-management options.</p>
+      <p>Cancellation normally takes effect at the end of the current paid period, so access usually continues until then. Different rules may apply in some countries or when required by law. You should use the store's cancellation process; contacting support does not by itself cancel a subscription.</p>
 
-      <h2>7. Changes, governing law &amp; contact</h2>
-      <p>We may update these terms as the app evolves; material changes will be reflected in the effective date above, and continued use means acceptance. These terms are governed by the laws of Australia. This app is also subject to Apple's standard Licensed Application End User License Agreement, which applies in addition to these terms. Questions: <a href="mailto:support@vectisinnovationlabs.com">support@vectisinnovationlabs.com</a>.</p>
+      <h2>7. Refunds and purchase problems</h2>
+      <p>Refund eligibility depends on the store used, the type and timing of the purchase, your location, and applicable law. For Android purchases, use <a href="https://support.google.com/googleplay/answer/2479637">Google Play's refund process</a>. For iOS purchases, use <a href="https://support.apple.com/billing">Apple's billing and refund process</a>. Contact <a href="mailto:support@vectisinnovationlabs.com">support@vectisinnovationlabs.com</a> if a valid purchase is not unlocking access. Nothing in this section limits refund or consumer rights that cannot lawfully be excluded.</p>
+
+      <h2>8. Your responsibilities</h2>
+      <p>You agree to use PurePath lawfully and for its intended personal purpose. You must not attempt to resell, redistribute, reverse-engineer, disrupt, misuse, or gain unauthorized access to the app except where applicable law expressly permits it.</p>
+      <p>You are responsible for keeping your device, store account, optional exported backup, backup password, and accountability-partner code secure. Vectis cannot recover a lost partner code or Android backup password. If you export a backup, you are responsible for where it is stored and who can access it.</p>
+
+      <h2>9. Your content and privacy</h2>
+      <p>Your recovery entries and plans remain yours. PurePath processes them locally to provide the features you use; you do not grant Vectis ownership of them. The app's storage, Content Shield processing, store purchases, backups, support email, and deletion behavior are described in the <a href="../privacy/">Privacy Policy</a>.</p>
+
+      <h2>10. Intellectual property and licence</h2>
+      <p>PurePath, its software, design, written content, branding, and the Vectis lever-and-fulcrum marks are owned by Vectis Innovation Labs or its licensors and are protected by applicable intellectual-property laws. Subject to these terms and the applicable store rules, we grant you a limited, personal, revocable, non-exclusive, non-transferable licence to use the app on devices you own or control.</p>
+
+      <h2>11. Availability, updates, and changes</h2>
+      <p>We may update, correct, improve, suspend, or discontinue features when reasonably necessary, including for safety, security, compatibility, legal, or store-policy reasons. We do not promise that every feature will work with every device, Android manufacturer, operating-system version, browser, website, or third-party app. You may need to install updates to continue using some features.</p>
+
+      <h2>12. Disclaimers and liability</h2>
+      <p>To the extent permitted by law, PurePath is provided "as is" and "as available", without guarantees that it will be uninterrupted, error-free, or suitable for a particular outcome. Recovery outcomes differ between people, and we do not guarantee abstinence, behavior change, or that the Content Shield will block every app or site.</p>
+      <p>To the fullest extent permitted by law, Vectis Innovation Labs is not liable for indirect, incidental, special, or consequential loss arising from use of or inability to use the app. Nothing in these terms excludes, restricts, or modifies a guarantee, right, or remedy that cannot lawfully be excluded — including rights under the Australian Consumer Law.</p>
+
+      <h2>13. Third-party services and store terms</h2>
+      <p>Google Play, the App Store, device operating systems, external websites, email providers, and crisis or support services are operated by third parties under their own terms and privacy policies. Their availability and decisions are outside our control.</p>
+      <p>Google Play terms apply to Android downloads and purchases. Apple's terms apply to iOS downloads and purchases, including Apple's <a href="https://www.apple.com/legal/internet-services/itunes/dev/stdeula/">Standard Licensed Application End User License Agreement</a> where applicable. If a mandatory store term conflicts with these terms, the mandatory store term applies to the extent of the conflict.</p>
+
+      <h2>14. Changes to these terms</h2>
+      <p>We may update these terms as PurePath, applicable law, or store requirements change. The effective date at the top shows the latest revision. Where required, material changes will be presented in the app or store listing. Continuing to use PurePath after revised terms take effect means you accept them, except where applicable law requires another form of consent.</p>
+
+      <h2>15. Governing law and contact</h2>
+      <p>These terms are governed by the laws of Australia, without limiting any mandatory rights you have under the laws of your place of residence. Questions about these terms: <a href="mailto:support@vectisinnovationlabs.com">support@vectisinnovationlabs.com</a>.</p>
     </div>
   </div>
 </main>
@@ -107,11 +151,11 @@ tailwind.config = { theme: { extend: {
 <footer class="border-t border-ink/10 bg-canvas-warm">
   <div class="mx-auto max-w-6xl px-6 py-10 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
     <p class="text-xs text-ink-mist">© 2026 Vectis Innovation Labs. All rights reserved.</p>
-    <nav aria-label="Footer" class="flex gap-x-8">
-      <a href="/" class="eyebrow text-ink-soft hover:text-indigo transition-colors">V.I.L. Home</a>
-      <a href="/purepath" class="eyebrow text-ink-soft hover:text-indigo transition-colors">PurePath</a>
-      <a href="/privacy" class="eyebrow text-ink-soft hover:text-indigo transition-colors">Privacy</a>
-      <a href="/support" class="eyebrow text-ink-soft hover:text-indigo transition-colors">Support</a>
+    <nav aria-label="Footer" class="legal-nav">
+      <a href="../" class="eyebrow text-ink-soft hover:text-indigo transition-colors">V.I.L. Home</a>
+      <a href="../purepath/" class="eyebrow text-ink-soft hover:text-indigo transition-colors">PurePath</a>
+      <a href="../privacy/" class="eyebrow text-ink-soft hover:text-indigo transition-colors">Privacy</a>
+      <a href="../support/" class="eyebrow text-ink-soft hover:text-indigo transition-colors">Support</a>
     </nav>
   </div>
 </footer>
