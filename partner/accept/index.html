@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Steadfast partner consent</title>
+  <link rel="stylesheet" href="/styles.css" />
+  <style>
+    :root { --ink:#26303B; --soft:#5A6675; --mint:#38A083; --indigo:#4A4F9E; --canvas:#FBF9F5; }
+    body { min-height:100vh; margin:0; display:grid; place-items:center; background:linear-gradient(135deg,#EDEDF7,#E4F2EC 55%,#F3ECD9); color:var(--ink); font-family:Inter,system-ui,sans-serif; }
+    main { width:min(92vw, 520px); box-sizing:border-box; padding:2.5rem; border-radius:1.5rem; background:rgba(255,255,255,.94); box-shadow:0 18px 60px rgba(38,48,59,.15); }
+    .eyebrow { letter-spacing:.18em; text-transform:uppercase; font:700 .68rem/1.4 "Space Mono",monospace; color:var(--mint); }
+    h1 { margin:.7rem 0 1rem; font:500 clamp(2rem,7vw,3rem)/1.05 Fraunces,Georgia,serif; }
+    p { color:var(--soft); line-height:1.6; }
+    label { display:block; margin:1.25rem 0 .45rem; font-weight:600; }
+    input[type=password] { width:100%; box-sizing:border-box; padding:.85rem 1rem; border:1px solid #CBD2DC; border-radius:.7rem; font-size:1.2rem; letter-spacing:.25em; }
+    .consent { display:flex; gap:.7rem; align-items:flex-start; margin:1.25rem 0; color:var(--soft); line-height:1.45; }
+    .consent input { margin-top:.25rem; accent-color:var(--indigo); }
+    button { width:100%; border:0; border-radius:999px; padding:1rem 1.3rem; background:var(--ink); color:white; font:700 .75rem "Space Mono",monospace; letter-spacing:.08em; text-transform:uppercase; cursor:pointer; }
+    button:disabled { opacity:.5; cursor:not-allowed; }
+    #status { min-height:1.5em; margin-top:1rem; font-size:.92rem; }
+    .error { color:#A63D40; } .success { color:#24785F; }
+    .hidden { display:none; }
+  </style>
+</head>
+<body>
+  <main>
+    <div class="eyebrow">Steadfast · partner consent</div>
+    <h1>Stand beside their commitment.</h1>
+    <p>This secure link lets you confirm your role as the accountability partner. Choose a six-digit PIN; it will be required for any protected changes.</p>
+    <form id="form" novalidate>
+      <label for="pin">Create partner PIN</label>
+      <input id="pin" type="password" inputmode="numeric" autocomplete="new-password" minlength="6" maxlength="6" pattern="[0-9]{6}" required aria-describedby="pin-help" />
+      <p id="pin-help">Use six numbers that you can remember but the owner cannot guess.</p>
+      <label class="consent"><input id="consent" type="checkbox" required /> <span>I understand that Steadfast may notify me about security events and protection changes during the commitment.</span></label>
+      <button id="submit" type="submit">Confirm partner consent</button>
+      <div id="status" role="status" aria-live="polite"></div>
+    </form>
+  </main>
+  <script>
+    const endpoint = "https://qpsfpqipambkabcyuhsc.supabase.co/functions/v1/accept-partner-invite";
+    const token = new URLSearchParams(location.search).get("token") || "";
+    const form = document.getElementById("form");
+    const pin = document.getElementById("pin");
+    const consent = document.getElementById("consent");
+    const submit = document.getElementById("submit");
+    const status = document.getElementById("status");
+    function show(message, kind) { status.textContent = message; status.className = kind || ""; }
+    if (!token) { submit.disabled = true; show("This invite link is missing its token. Ask the owner to send a new invite.", "error"); }
+    form.addEventListener("submit", async (event) => {
+      event.preventDefault();
+      if (!token || !/^\d{6}$/.test(pin.value) || !consent.checked) { show("Enter a six-digit PIN and accept the consent statement.", "error"); return; }
+      submit.disabled = true; show("Confirming your consent…");
+      try {
+        const response = await fetch(endpoint, { method:"POST", headers:{"content-type":"application/json"}, body:JSON.stringify({ token, pin:pin.value, consentAccepted:true }) });
+        const payload = await response.json().catch(() => ({}));
+        if (!response.ok) throw new Error(payload?.error?.message || "The invite could not be accepted.");
+        form.classList.add("hidden"); show("Consent confirmed. You can close this page.", "success");
+      } catch (error) { submit.disabled = false; show(error.message || "The invite could not be accepted.", "error"); }
+    });
+  </script>
+</body>
+</html>
